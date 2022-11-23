@@ -5,6 +5,9 @@ import java.util.*;
  */
 
 public interface Groupe extends MonPrint {
+
+    
+
     /**
      * Ajoute un étudiant. Se comporte comme add de l'interface Set.
      *
@@ -82,7 +85,7 @@ public interface Groupe extends MonPrint {
      * Potentiellement "vide"
      * @return l'ensemble de sous-groupes.
      */
-    public Set<Groupe> getSousGroupes();
+    //public Set<Groupe> getSousGroupes();
 
     /**
      * Potentiellement "vide"
@@ -97,7 +100,7 @@ public interface Groupe extends MonPrint {
      * NB2. On ne peut pas utiliser le toString de Objects
      * https://stackoverflow.com/questions/24016962/java8-why-is-it-forbidden-to-define-a-default-method-for-a-method-from-java-lan
      */ 
-    public default String monPrint() {
+   /*   public default String monPrint() {
         StringBuilder sb = new StringBuilder();
         sb.append("Groupe " + getName() + " (" + getType() + ", capacité " + getMin() + " à " + getMax()  +", id " + getId()+")");
         sb.append("\n");
@@ -116,6 +119,6 @@ public interface Groupe extends MonPrint {
             sb.append("\n");
         }
         return sb.toString();
-    }
+    }*/
 
 }

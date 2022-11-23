@@ -1,16 +1,18 @@
 # COMMANDES #
 JAVAC = javac
 # note $$ to get a single shell $
-JAVAC_OPTIONS = -d build -cp build:$$CLASSPATH -implicit:none
+JAVAC_OPTIONS = -d build -cp build:$$CLASSPATH -implicit:none -sourcepath src -encoding UTF-8
 JAVA = java
+JAVA_OPTIONS = -cp .\build\ 
 JAR = jar
 EXEC_JAR = ${JAVA} -jar
+SUP = rm -rf
 
 # CHEMINS RELATIFS
 SRC = src/fr/iutfbleau/projetIHM2022FI2
 BUILD = build/fr/iutfbleau/projetIHM2022FI2
 DOC = doc/fr/iutfbleau/projetIHM2022FI2
-
+BUILD_WINDOWS = "build/fr/iutfbleau/projetIHM2022FI2/"
 # CHOIX NOMS
 JAR_MNP = test-mnp.jar
 
@@ -18,15 +20,26 @@ JAR_MNP = test-mnp.jar
 .PHONY : run clean doc
 
 # BUT PAR DEFAUT #
-run : ${JAR_MNP}
-	${EXEC_JAR} ${JAR_MNP}
+run : ${BUILD}/VIEW/DashboardGroupe.class
+	${JAVA} ${JAVA_OPTIONS} fr.iutfbleau.projetIHM2022FI2.VIEW.DashboardGroupe
+
+#${JAR_MNP}
+#${EXEC_JAR} ${JAR_MNP}
 
 # AUTRE BUTS
 doc :
 	javadoc -d doc src/fr/iutfbleau/projetIHM2022FI2/API/*.java src/fr/iutfbleau/projetIHM2022FI2/MNP/*.java
 
-clean :
-	rm -rf ${BUILD}/* *.jar
+# POUR WINDOWS#
+##clean : 
+##	rd /s /q ${BUILD_WINDOWS}
+
+# POUR LINUX #
+clean : 
+	rm -rf ${BUILD}/
+
+##clean : 
+
 
 
 # REGLES DE DEPENDANCE #
@@ -61,6 +74,7 @@ ${BUILD}/API/AbstractChangementFactory.class : ${SRC}/API/AbstractChangementFact
 	  		            ${BUILD}/API/AbstractGroupeFactory.class \
 				    ${BUILD}/API/Changement.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/AbstractChangementFactory.java
+
 
 ## MNP ##
 
@@ -104,8 +118,52 @@ ${BUILD}/MNP/AbstractChangementFactoryNP.class : ${SRC}/MNP/AbstractChangementFa
                          ${BUILD}/MNP/AbstractChangementFactoryNP.class	
 	${JAVAC} -Xlint:deprecation ${JAVAC_OPTIONS} ${SRC}/Test/TestTexteMNP.java
 
+
+
+##UTILS#
+
+${BUILD}/UTILS/Utils.class: ${SRC}/UTILS/Utils.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/UTILS/utils.java
+
+## CONTROLLER ##
+
+${BUILD}/CONTROLLER/Observateur_CG.class: ${SRC}/CONTROLLER/Observateur_CG.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_CG.java
+
+${BUILD}/CONTROLLER/Observateur_arborescence.class: ${SRC}/CONTROLLER/Observateur_arborescence.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_arborescence.java
+
+${BUILD}/CONTROLLER/Observateur_MEG.class: ${SRC}/CONTROLLER/Observateur_MEG.java \
+		${BUILD}/VIEW/CreationGroupe.class \
+		${BUILD}/VIEW/EditGroupe.class 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_MEG.java
+
+## VIEW ##
+
+${BUILD}/VIEW/EditGroupe.class: ${SRC}/VIEW/EditGroupe.java 
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/EditGroupe.java		
+
+
+${BUILD}/VIEW/CreationGroupe.class: ${SRC}/VIEW/CreationGroupe.java \
+				${BUILD}/CONTROLLER/Observateur_CG.class \ 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/CreationGroupe.java
+
+
+${BUILD}/VIEW/DashboardGroupe.class: ${SRC}/VIEW/DashboardGroupe.java \
+				${BUILD}/UTILS/Utils.class \
+				${BUILD}/CONTROLLER/Observateur_arborescence.class \
+				${BUILD}/CONTROLLER/Observateur_MEG.class \				
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/DashboardGroupe.java
+	
+
+
+
+
+
+
+
 # ## JARS ##
 
- ${JAR_MNP} : ${BUILD}/Test/TestTexteMNP.class
-	${JAR} cvfe ${JAR_MNP} fr.iutfbleau.projetIHM2022FI2.Test.TestTexteMNP -C build fr
+ #${JAR_MNP} : ${BUILD}/Test/TestTexteMNP.class
+#	${JAR} cvfe ${JAR_MNP} fr.iutfbleau.projetIHM2022FI2.Test.TestTexteMNP -C build fr
 

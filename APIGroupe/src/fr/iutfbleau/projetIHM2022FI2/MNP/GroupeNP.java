@@ -187,6 +187,8 @@ public class GroupeNP implements Groupe {
     public Set<Etudiant> getEtudiants(){
         return this.membresDuGroupe;
     }
-
+    public String monPrint(){
+        return"lal";
+    };
 
 }
