@@ -108,7 +108,7 @@ public interface AbstractGroupeFactory {
      *
      * @throws java.lang.NullPointerException si le String est null.
      */
-    public Set<Groupe> getGroupesOfEtudiant(Etudiant etu);
+    public Set<Groupe> getGroupesOfEtudiant(Etudiant etu); 
 
     
     

@@ -17,8 +17,7 @@ public class MyEtudiant implements Etudiant {
         try{
 
         PreparedStatement req = Utils.con.prepareStatement("Select * from Etudiant where Id = ? ");
-            req.setString(1,Integer.toString(id_etudiant));
-            req.executeUpdate();
+            req.setInt(1,id_etudiant);
             ResultSet res = req.executeQuery();
             res.next();
 
@@ -28,8 +27,8 @@ public class MyEtudiant implements Etudiant {
 
             Utils.open_connection();
 
-        } catch (Exception se) {
-            System.err.println("errreur Sql"+se);
+        } catch (SQLException se) {
+            System.err.println("errreur Sql at MyEtudiant()"+se);
 
         }
         

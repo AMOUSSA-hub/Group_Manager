@@ -1,11 +1,14 @@
 package fr.iutfbleau.projetIHM2022FI2.VIEW;
 import javax.swing.*;
+
+import fr.iutfbleau.projetIHM2022FI2.API.MyGroupe;
+
 import java.awt.*;
 
 
 public class EditGroupe extends JDialog {
 
-    public EditGroupe( String name_groupe, JFrame owner){
+    public EditGroupe( MyGroupe groupe, JFrame owner){
         super(owner,true);
         setResizable(false);
 
@@ -20,9 +23,9 @@ public class EditGroupe extends JDialog {
         JTextField new_name = new JTextField("nouveau nom");
         JButton rename  = new JButton("renommer");
         JButton ajout_eleve = new JButton("ajouter  un eleve");
-        JButton ajout_sous_groupe = new JButton("ajouter un sous groupe");
+        JButton ajout_sous_groupe = new JButton("créer un sous groupe");
         
-        header.add(new JLabel(name_groupe),BorderLayout.CENTER);
+        header.add(new JLabel(groupe.getName()),BorderLayout.CENTER);
         middle.add(new_name);
         middle.add(rename);
         footer.add(ajout_eleve, BorderLayout.WEST);

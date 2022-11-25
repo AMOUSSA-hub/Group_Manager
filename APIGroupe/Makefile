@@ -1,9 +1,9 @@
 # COMMANDES #
 JAVAC = javac
 # note $$ to get a single shell $
-JAVAC_OPTIONS = -d build -cp build:$$CLASSPATH -implicit:none -sourcepath src -encoding UTF-8
+JAVAC_OPTIONS = -d build -cp .\build\ -sourcepath src   -encoding UTF-8
 JAVA = java
-JAVA_OPTIONS = -cp .\build\ 
+JAVA_OPTIONS = -cp "build;\Users\amous\OneDrive\Documents\FIprojetIHM2022\APIGroupe\res\mariadb-client.jar" 
 JAR = jar
 EXEC_JAR = ${JAVA} -jar
 SUP = rm -rf
@@ -31,12 +31,12 @@ doc :
 	javadoc -d doc src/fr/iutfbleau/projetIHM2022FI2/API/*.java src/fr/iutfbleau/projetIHM2022FI2/MNP/*.java
 
 # POUR WINDOWS#
-##clean : 
-##	rd /s /q ${BUILD_WINDOWS}
+clean : 
+	rd /s /q ${BUILD_WINDOWS}
 
 # POUR LINUX #
-clean : 
-	rm -rf ${BUILD}/
+#clean : 
+#	rm .\build\
 
 ##clean : 
 

@@ -85,7 +85,7 @@ public interface Groupe extends MonPrint {
      * Potentiellement "vide"
      * @return l'ensemble de sous-groupes.
      */
-    //public Set<Groupe> getSousGroupes();
+    public Set<Groupe> getSousGroupes();
 
     /**
      * Potentiellement "vide"

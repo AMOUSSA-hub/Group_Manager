@@ -14,19 +14,22 @@ public class MyGroupe implements Groupe {
     private int max;
     private TypeGroupe type;
     private int size;
+    private String path;
+    private Set<Etudiant> all_etudiant = new HashSet<>();
+    private Set<Groupe> all_sous_groupe = new HashSet<>();
     
 
 
 
     public MyGroupe(int id_groupe){
 
+
         Utils.open_connection();
 
         try{
 
                 PreparedStatement req = Utils.con.prepareStatement("Select * from Groupe where Id = ? ");
-            req.setString(1,Integer.toString(id_groupe));
-            req.executeUpdate();
+            req.setInt(1,id_groupe);
             ResultSet res = req.executeQuery();
             res.next();
             id = res.getInt(1);
@@ -52,33 +55,124 @@ public class MyGroupe implements Groupe {
 
             size = res.getInt(7);
 
+
+             req = Utils.con.prepareStatement("SELECT COUNT(*) FROM Contient WHERE Contient.idGroupe = ?");
+                req.setInt(1,id);
+                 res = req.executeQuery();
+    
+                       
+                res.next();
+                size = res.getInt(1);
+                 
+            
+            
             Utils.close_connection();
+            
 
 
-            } catch (Exception se) {
-                System.err.println("errreur Sql"+se);
+            } catch (SQLException  se) {
+                System.err.println("errreur Sql at MyGroupe()"+se);
 
             }
 
+            
+
+   }
+
+    
    
+   
+   
+   
+   
+   
+   public boolean addEtudiant(Etudiant e){
 
-    }
+        Utils.open_connection();
 
-    public boolean addEtudiant(Etudiant e){
+
+    try{
+
+        PreparedStatement req = Utils.con.prepareStatement("Insert into Contient (Contient.idGroupe,Contient.IdEtudiant) VALUES(?,?) ");
+            req.setInt(1,id);
+            req.setInt(2, e.getId());
+            req.executeUpdate();
+
+
+       } catch (SQLException  se) {
+                System.err.println("errreur Sql at addEtudiant():"+se);
+
+            }
+
+        Utils.close_connection();
+
+
 
         return true;
     }
 
+    
+    
     public boolean removeEtudiant(Etudiant e){
+
+        try{
+
+            PreparedStatement req = Utils.con.prepareStatement("DELETE from Contient Where Contient.idGroupe = ? AND Contient.IdEtudiant = ? ");
+                req.setInt(1,id);
+                req.setInt(2, e.getId());
+                req.executeUpdate();
+    
+    
+           } catch (SQLException  se) {
+                    System.err.println("errreur Sql at removeEtudiant():"+se);
+    
+                }
+
+
+
+        
         return true;
     }
 
     public boolean addSousGroupe(Groupe g){
+
+        try{
+
+            PreparedStatement req = Utils.con.prepareStatement("UPDATE Groupe SET Groupe.idPere = ? WHERE Groupe.id = ? ");
+                req.setInt(1,id);
+                req.setInt(2, g.getId());
+                req.executeUpdate();
+    
+    
+           } catch (SQLException  se) {
+                    System.err.println("errreur Sql at addSousGroupe():"+se);
+    
+                }
+
+
+
+
+
         return true;
     }
 
 
     public boolean removeSousGroupe(Groupe g){
+
+        try{
+
+            PreparedStatement req = Utils.con.prepareStatement("UPDATE Groupe SET Groupe.idPere = 1 WHERE Groupe.id = ? ");
+                req.setInt(1, g.getId());
+                req.executeUpdate();
+    
+    
+           } catch (SQLException  se) {
+                    System.err.println("errreur Sql at addSousGroupe():"+se);
+    
+                }
+
+
+
 
         return true;
     };
@@ -107,6 +201,7 @@ public class MyGroupe implements Groupe {
     public int getSize(){
 
         return size;
+       
     };
 
 
@@ -118,12 +213,48 @@ public class MyGroupe implements Groupe {
 
     public Groupe getPointPoint(){
 
-        return this;
+        return new MyGroupe(idfather);
     };
+
+    
+    
+    public Set<Groupe> getSousGroupes(){
+
+        Utils.open_connection();
+        
+    try{
+        
+       
+
+        PreparedStatement req = Utils.con.prepareStatement("Select Groupe.id,Groupe.Nom from Groupe where Groupe.idPere = ?");
+            req.setInt(1,id);
+            ResultSet res = req.executeQuery();
+
+            while(res.next()){
+
+                all_sous_groupe.add(new MyGroupe(res.getInt(1)));
+            }
+
+   
+        } catch (SQLException e) {
+            System.err.println("errreur Sql at getSousgroupe()"+e);
+            
+          }
+
+          Utils.close_connection();
+
+
+            return all_sous_groupe;
+
+
+
+
+
+    }
 
     public Set<Etudiant> getEtudiants(){
 
-        Set<Etudiant> all_etudiant = new HashSet<>();
+        
 
         
         Utils.open_connection();
@@ -131,8 +262,7 @@ public class MyGroupe implements Groupe {
         try{
 
             PreparedStatement req = Utils.con.prepareStatement("Select Contient.IdEtudiant from Contient WHERE Contient.idGroupe = ? ");
-            req.setString(1,Integer.toString(id));
-            req.executeUpdate();
+            req.setInt(1,id);
             ResultSet res = req.executeQuery();
 
             while(res.next()){
@@ -140,29 +270,38 @@ public class MyGroupe implements Groupe {
                 all_etudiant.add(new MyEtudiant(res.getInt(1)));
             }
 
-            Utils.close_connection();
+           
 
-        } catch (Exception se) {
-            System.err.println("errreur Sql"+se);
+        } catch (SQLException se) {
+            System.err.println("errreur Sql at getEtudiants()"+se);
 
         }
-            
-
+        Utils.close_connection();
 
 
 
         return all_etudiant;
 
-    };
+    }
+
+    public void setPath (String init_path){
+
+        path = init_path;
+    }
+
+    public String getPath(){
+
+        return path;
+    }
 
     public String monPrint() {
 
         return "name";
     }
-
+/* 
     public static void main(String[] args) {
-        MyGroupe g  = new MyGroupe(1);
-        Set<Etudiant> list_etu =  g.getEtudiants();
+       MyGroupe g  = new MyGroupe(1);
+       Set<Etudiant> list_etu =  g.getEtudiants();
         Iterator<Etudiant> iterator = list_etu.iterator();
 
         while(iterator.hasNext()){
@@ -170,15 +309,13 @@ public class MyGroupe implements Groupe {
             Etudiant a = iterator.next();
 
             System.out.println(a.getNom() +" " + a.getPrenom());
-        }
-
-        
+        } 
 
 
 
 
     }
-
+*/
 
 
 

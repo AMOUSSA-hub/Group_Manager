@@ -14,17 +14,11 @@ public static   Connection con;
 
             try{
                 Class.forName("org.mariadb.jdbc.Driver"); 
-                
                 try{
-                    con = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/bazillio","bazillio", "mehackpasstp?");
-                
-                
-                
-            } catch (Exception se) {
-                System.err.println("errreur Sql"+se);
-            
-            }
-            
+                    con = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/bazillio","bazillio", "mehackpasstp?");          
+                } catch (Exception se) {
+                    System.err.println("errreur Sql"+se);            
+                }            
             
             }catch(ClassNotFoundException ce){
                     
@@ -34,12 +28,14 @@ public static   Connection con;
     
     }
 
+
+
+
     public static void close_connection(){
 
             
         try{
             con.close();
-
         } catch (Exception se) {
             System.err.println("errreur Sql"+se);
 
@@ -47,23 +43,19 @@ public static   Connection con;
     }
 
 
-    public static String TreeNode_to_String(TreeNode[] a){
 
+
+    
+    public static String TreeNode_to_String(TreeNode[] a){
 
        String [] path_2 = new String[a.length];
             
         for(int i = 0 ; i <= a.length-1; i++){
-
            path_2[i] = a[i].toString();
-            
-
         }
-
-        
         System.out.println(new TreePath(path_2));
-        return  new TreePath(path_2).toString();
         
-
+        return  new TreePath(path_2).toString();
 
     }
 

@@ -21,8 +21,9 @@ public class DashboardGroupe extends JFrame {
     public static JPanel menu_etudiant = new JPanel();
  
     private static DefaultMutableTreeNode root;
-    public static Map<String,Integer> group_map = new HashMap<String,Integer>();
+    public static Map<String,MyGroupe> group_map = new HashMap<String,MyGroupe>();
     public static CardLayout gestionnaire = new CardLayout();
+
   
  
 
@@ -45,9 +46,8 @@ public class DashboardGroupe extends JFrame {
 
         
       
-        display_group(new DefaultMutableTreeNode( new MyGroupe(1).getName()),1);
-         JTree arbre = new JTree(root);
-       arbre.setRootVisible(false);
+       JTree arbre =  display_group(new DefaultMutableTreeNode( new MyGroupe(1).getName()),1);
+          
        arbre.addTreeSelectionListener(new Observateur_arborescence());
   
         
@@ -90,14 +90,22 @@ public class DashboardGroupe extends JFrame {
 
         while(iterator.hasNext()){
 
+            JPanel info_etudiant = new JPanel();
+            info_etudiant.setBorder(BorderFactory.createLineBorder(Color.black));
             Etudiant a = iterator.next();
 
             nbr_etudiant++;
-                diapositive_etudiant.add(new JLabel(a.getNom()+ " "+  a.getPrenom() ));
-            JButton info = new JButton("infos");
-            diapositive_etudiant.add(info);
-            diapositive_etudiant.add(new JButton("Supprimer"));
+                info_etudiant.add(new JLabel(a.getNom()+ " "+  a.getPrenom() ));
+                JButton info = new JButton("infos");
+           info_etudiant.add(info);
+            if(groupe_selected.getId() != 1){
+                info_etudiant.add(new JButton("Supprimer"));
+            }
+
+            diapositive_etudiant.add(info_etudiant);
         }
+
+
 
               
             diapositive_etudiant.setLayout(new GridLayout(nbr_etudiant,3));
@@ -111,52 +119,46 @@ public class DashboardGroupe extends JFrame {
     
     
     
-    public static void  display_group( DefaultMutableTreeNode node_départ,int id_groupe){
-
-
-        
+    public static JTree  display_group( DefaultMutableTreeNode node_départ,int id_groupe){
+  
         DefaultMutableTreeNode parent = node_départ;
-      
+
         String path = Utils.TreeNode_to_String(parent.getPath());
-        group_map.put(path,id_groupe);
-        display_etudiant(new MyGroupe(id_groupe),path );
+
+        MyGroupe g = new MyGroupe(id_groupe);
+
+      g.setPath(path);
+
+        group_map.put(path,g);
+        display_etudiant(g,g.getPath());
      
       if(id_groupe == 1 ){
          root = parent;
       }
 
-      Utils.open_connection();
+    
+     
+        Set<Groupe> list_groupe = g.getSousGroupes();
+        Iterator<Groupe> iterator = list_groupe.iterator();
 
-      try {
-        PreparedStatement req = Utils.con.prepareStatement("Select Groupe.id from Groupe where Groupe.idPere = ?");
-            req.setString(1,Integer.toString(id_groupe));
-            req.executeUpdate();
-            ResultSet res = req.executeQuery();
 
                    
-            while(res.next()){
-               
+            while(iterator.hasNext()){
 
-                DefaultMutableTreeNode fils = new DefaultMutableTreeNode(new MyGroupe(res.getInt(1)).getName());
+                Groupe sous_groupe = iterator.next();
+                DefaultMutableTreeNode fils = new DefaultMutableTreeNode(sous_groupe.getName());
                
                 parent.add(fils);
                 
-                 
                 Thread.dumpStack();
                
-                 display_group(fils,res.getInt(1));
+                 display_group(fils,sous_groupe.getId());
                 
                 
-            }
-        
-        
-      } catch (Exception e) {
-        System.err.println("errreur Sql"+e);
-        
-      }
-     
-      
-      Utils.close_connection();
+            }   
+  
+
+      return new JTree(root);
 
     }
 
@@ -165,6 +167,7 @@ public class DashboardGroupe extends JFrame {
 
 
     public static void main(String[] args) {
+        
         new DashboardGroupe();
     }
     

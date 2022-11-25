@@ -32,7 +32,7 @@ public class Observateur_MEG implements ActionListener {
 
         if(e.getActionCommand().equals("supprimer")){
 
-            System.out.println("demande de suppresion du groupe : " +new MyGroupe(Observateur_arborescence.id_selected_group).getName());
+            System.out.println("demande de suppresion du groupe : " +Observateur_arborescence.group_selected.getName());
             
 
         }
