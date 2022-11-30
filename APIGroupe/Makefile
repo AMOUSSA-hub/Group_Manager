@@ -20,8 +20,8 @@ JAR_MNP = test-mnp.jar
 .PHONY : run clean doc
 
 # BUT PAR DEFAUT #
-run : ${BUILD}/VIEW/DashboardGroupe.class
-	${JAVA} ${JAVA_OPTIONS} fr.iutfbleau.projetIHM2022FI2.VIEW.DashboardGroupe
+run : ${BUILD}/VIEW/Admin/DashboardGroupe.class
+	${JAVA} ${JAVA_OPTIONS} fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe
 
 #${JAR_MNP}
 #${EXEC_JAR} ${JAR_MNP}
@@ -153,9 +153,9 @@ ${BUILD}/CONTROLLER/Observateur_arborescence.class: ${SRC}/CONTROLLER/Observateu
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_arborescence.java
 
 ${BUILD}/CONTROLLER/Observateur_MEG.class: ${SRC}/CONTROLLER/Observateur_MEG.java \
-		${BUILD}/VIEW/CreationGroupe.class \
-		${BUILD}/VIEW/EditGroupe.class \
-		${BUILD}/VIEW/Creation_Etudiant.class 
+		${BUILD}/VIEW/Admin/CreationGroupe.class \
+		${BUILD}/VIEW/Admin/EditGroupe.class \
+		${BUILD}/VIEW/Admin/Creation_Etudiant.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_MEG.java
 
 ${BUILD}/CONTROLLER/Observateur_EG.class: ${SRC}/CONTROLLER/Observateur_EG.java \
@@ -166,20 +166,20 @@ ${BUILD}/CONTROLLER/Observateur_EG.class: ${SRC}/CONTROLLER/Observateur_EG.java 
 
 ## VIEW ##
 
-${BUILD}/VIEW/EditGroupe.class: ${SRC}/VIEW/EditGroupe.java \
+${BUILD}/VIEW/Admin/EditGroupe.class: ${SRC}/VIEW/Admin/EditGroupe.java \
 		${BUILD}/CONTROLLER/Observateur_EG.class
-		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/EditGroupe.java	
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/EditGroupe.java	
 
-${BUILD}/VIEW/Creation_Etudiant.class: ${SRC}/VIEW/Creation_Etudiant.java 
-		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Creation_Etudiant.java	
+${BUILD}/VIEW/Admin/Creation_Etudiant.class: ${SRC}/VIEW/Admin/Creation_Etudiant.java 
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Creation_Etudiant.java	
 
 
-${BUILD}/VIEW/CreationGroupe.class: ${SRC}/VIEW/CreationGroupe.java \
+${BUILD}/VIEW/Admin/CreationGroupe.class: ${SRC}/VIEW/Admin/CreationGroupe.java \
 				${BUILD}/CONTROLLER/ObservateurCreation.class \ 
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/CreationGroupe.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/CreationGroupe.java
 
 
-${BUILD}/VIEW/DashboardGroupe.class: ${SRC}/VIEW/DashboardGroupe.java \
+${BUILD}/VIEW/Admin/DashboardGroupe.class: ${SRC}/VIEW/Admin/DashboardGroupe.java \
 				${BUILD}/UTILS/Utils.class \
 				${BUILD}/CONTROLLER/Observateur_arborescence.class \
 				${BUILD}/CONTROLLER/Observateur_MEG.class \
@@ -187,7 +187,7 @@ ${BUILD}/VIEW/DashboardGroupe.class: ${SRC}/VIEW/DashboardGroupe.java \
 				${BUILD}/API/MyEtudiant.class \
 				${BUILD}/API/MyAbstractGroupeFactory.class \
 
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/DashboardGroupe.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/DashboardGroupe.java
 	
 
 

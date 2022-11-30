@@ -6,7 +6,7 @@ import java.lang.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.MyGroupe;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.Chargement;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.DashboardGroupe;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 
 public class Observateur_EG implements ActionListener {
 

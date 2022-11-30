@@ -1,4 +1,4 @@
-package fr.iutfbleau.projetIHM2022FI2.VIEW;
+package fr.iutfbleau.projetIHM2022FI2.VIEW.Admin;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.ObservateurCreation;

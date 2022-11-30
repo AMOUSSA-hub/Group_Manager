@@ -4,7 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import fr.iutfbleau.projetIHM2022FI2.VIEW.DashboardGroupe;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 
 public class Chargement extends Thread  {
 

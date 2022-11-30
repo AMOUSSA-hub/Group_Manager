@@ -4,9 +4,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.MyGroupe;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.CreationGroupe;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.Creation_Etudiant;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.EditGroupe;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.CreationGroupe;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.Creation_Etudiant;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.EditGroupe;
 
 
 public class Observateur_MEG implements ActionListener {

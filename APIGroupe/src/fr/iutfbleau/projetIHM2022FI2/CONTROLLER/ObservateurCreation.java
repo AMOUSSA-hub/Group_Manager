@@ -5,6 +5,8 @@ import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.*;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.CreationGroupe;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 
 public class ObservateurCreation implements ActionListener {
 
