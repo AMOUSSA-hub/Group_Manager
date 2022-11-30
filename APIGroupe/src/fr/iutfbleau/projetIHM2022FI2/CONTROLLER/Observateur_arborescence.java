@@ -1,19 +1,23 @@
 package fr.iutfbleau.projetIHM2022FI2.CONTROLLER;
 import javax.swing.event.*;
+import javax.swing.tree.*;
 
-import fr.iutfbleau.projetIHM2022FI2.API.MyGroupe;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.DashboardGroupe;
+import fr.iutfbleau.projetIHM2022FI2.API.*;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.*;
 
 
 public class Observateur_arborescence implements TreeSelectionListener {
 
     public static MyGroupe  group_selected = null;
-    public static int id_selected_group;
+    public static int id_group;
+  
 
     public void valueChanged(TreeSelectionEvent e) {
 
         
+
         determined_id(e.getPath().toString());
+        System.out.println(group_selected.getName());
         DashboardGroupe.modification_groupe.setEnabled(true);
         DashboardGroupe.suppression_groupe.setEnabled(true);
 
@@ -25,9 +29,12 @@ public class Observateur_arborescence implements TreeSelectionListener {
         
        
        System.out.println(group_selected.getSize());
-        DashboardGroupe.gestionnaire.show(DashboardGroupe.menu_etudiant,group_selected.getPath());
+        DashboardGroupe.gestionnaire.show(DashboardGroupe.menu_etudiant,group_selected.getId()+"");
+        
+        
         
 
+        
 
 
     }
@@ -35,7 +42,9 @@ public class Observateur_arborescence implements TreeSelectionListener {
     public int determined_id( String p){
 
 
-        group_selected = DashboardGroupe.group_map.get(p);
+         
+       group_selected = DashboardGroupe.bd.brain.get(DashboardGroupe.group_map.get(p));
+
 
     
 

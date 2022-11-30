@@ -88,6 +88,8 @@ public class MyGroupe implements Groupe {
    
    public boolean addEtudiant(Etudiant e){
 
+        all_etudiant.add(e);
+
         Utils.open_connection();
 
 
@@ -106,6 +108,7 @@ public class MyGroupe implements Groupe {
 
         Utils.close_connection();
 
+        
 
 
         return true;
@@ -114,6 +117,8 @@ public class MyGroupe implements Groupe {
     
     
     public boolean removeEtudiant(Etudiant e){
+
+        Utils.open_connection();
 
         try{
 
@@ -129,12 +134,14 @@ public class MyGroupe implements Groupe {
                 }
 
 
-
+        Utils.close_connection();
         
         return true;
     }
 
     public boolean addSousGroupe(Groupe g){
+
+        Utils.open_connection();
 
         try{
 
@@ -149,7 +156,7 @@ public class MyGroupe implements Groupe {
     
                 }
 
-
+        Utils.close_connection();
 
 
 
@@ -158,6 +165,8 @@ public class MyGroupe implements Groupe {
 
 
     public boolean removeSousGroupe(Groupe g){
+
+        Utils.open_connection();
 
         try{
 
@@ -170,6 +179,8 @@ public class MyGroupe implements Groupe {
                     System.err.println("errreur Sql at addSousGroupe():"+se);
     
                 }
+
+        Utils.close_connection();
 
 
 
@@ -220,6 +231,7 @@ public class MyGroupe implements Groupe {
     
     public Set<Groupe> getSousGroupes(){
 
+        if(all_sous_groupe.isEmpty()){
         Utils.open_connection();
         
     try{
@@ -243,6 +255,8 @@ public class MyGroupe implements Groupe {
 
           Utils.close_connection();
 
+        }
+
 
             return all_sous_groupe;
 
@@ -255,7 +269,7 @@ public class MyGroupe implements Groupe {
     public Set<Etudiant> getEtudiants(){
 
         
-
+    if(all_etudiant.isEmpty()){
         
         Utils.open_connection();
 
@@ -277,8 +291,9 @@ public class MyGroupe implements Groupe {
 
         }
         Utils.close_connection();
-
-
+    
+    
+    }
 
         return all_etudiant;
 
@@ -297,6 +312,38 @@ public class MyGroupe implements Groupe {
     public String monPrint() {
 
         return "name";
+    }
+
+    public boolean editName(String new_name){
+
+        Utils.open_connection();
+
+        this.name = new_name;
+
+        try{
+
+            PreparedStatement req = Utils.con.prepareStatement("UPDATE Groupe SET Groupe.nom = ? WHERE Groupe.id = ? ");
+                req.setString(1, new_name);
+                req.setInt(2, id);
+              int check =   req.executeUpdate();
+
+              if(check !=0){
+
+                System.out.println("commande traité avec succès");
+              }
+
+              
+    
+            
+           } catch (SQLException  se) {
+                    System.err.println("errreur Sql at editName():"+se);
+    
+                }
+
+        Utils.close_connection();
+
+
+        return true;
     }
 /* 
     public static void main(String[] args) {

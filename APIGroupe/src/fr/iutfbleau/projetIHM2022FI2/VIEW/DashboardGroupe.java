@@ -15,25 +15,32 @@ import java.sql.*;
 
 
 public class DashboardGroupe extends JFrame {
+    private static DefaultMutableTreeNode root;
+    private static JPanel pan_groupe ;
 
+    public static  JFrame menu_fen;
     public static  JButton modification_groupe = new JButton("modifier");
     public static JButton suppression_groupe = new JButton("supprimer");
-    public static JPanel menu_etudiant = new JPanel();
- 
-    private static DefaultMutableTreeNode root;
-    public static Map<String,MyGroupe> group_map = new HashMap<String,MyGroupe>();
+    public static JPanel menu_etudiant = new JPanel();  
+    public static Map<String,Integer> group_map = new HashMap<String,Integer>();
     public static CardLayout gestionnaire = new CardLayout();
+    public static JTree arbre ;
+    public static MyAbstractGroupeFactory bd = new MyAbstractGroupeFactory();
+    
 
   
  
 
     public DashboardGroupe(){
 
-        
+         menu_fen = this;
         JPanel north_pan = new JPanel();
         JPanel south_pan = new JPanel();
-        JButton creation_groupe = new JButton("créer");
-        
+        pan_groupe = new JPanel();
+        JButton creation_groupe = new JButton("créer un groupe");
+        JButton ajout_etudiant = new JButton("ajouter etudiant");
+
+        pan_groupe.setLayout(gestionnaire);
         setLocation(10,10);
         setSize(Utils.fen_dimension);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,14 +53,14 @@ public class DashboardGroupe extends JFrame {
 
         
       
-       JTree arbre =  display_group(new DefaultMutableTreeNode( new MyGroupe(1).getName()),1);
+        arbre =  display_group(new DefaultMutableTreeNode(bd.brain.get(1).getName()),1);
           
-       arbre.addTreeSelectionListener(new Observateur_arborescence());
+       
   
         
-        
-        north_pan.add(arbre);
-        north_pan.add(new JScrollPane(arbre));
+        pan_groupe.add(arbre);
+        north_pan.add(pan_groupe);
+        north_pan.add(new JScrollPane(pan_groupe));
         north_pan.add(menu_etudiant);
         
 
@@ -62,12 +69,14 @@ public class DashboardGroupe extends JFrame {
         creation_groupe.addActionListener(new Observateur_MEG(this));
         modification_groupe.addActionListener(new Observateur_MEG(this));
         suppression_groupe.addActionListener(new Observateur_MEG());
+        ajout_etudiant.addActionListener(new Observateur_MEG(this));
           
        
         south_pan.setBackground(new Color(116, 208, 241));
         south_pan.add(creation_groupe,BorderLayout.CENTER);
         south_pan.add(modification_groupe,BorderLayout.CENTER);
         south_pan.add(suppression_groupe,BorderLayout.CENTER);
+        south_pan.add(ajout_etudiant,BorderLayout.CENTER);
 
         add(north_pan);
         add(south_pan,BorderLayout.SOUTH);
@@ -80,7 +89,7 @@ public class DashboardGroupe extends JFrame {
     
 
     
-    public static void display_etudiant (MyGroupe groupe_selected,String titre_diapo){
+    public static void display_etudiant (Groupe groupe_selected,String titre_diapo){
 
          JPanel diapositive_etudiant = new JPanel(); 
         int nbr_etudiant = 0;
@@ -111,7 +120,7 @@ public class DashboardGroupe extends JFrame {
             diapositive_etudiant.setLayout(new GridLayout(nbr_etudiant,3));
             
 
-        menu_etudiant.add(diapositive_etudiant,titre_diapo);
+        menu_etudiant.add(diapositive_etudiant,groupe_selected.getId()+"");
         
     }
 
@@ -119,17 +128,17 @@ public class DashboardGroupe extends JFrame {
     
     
     
-    public static JTree  display_group( DefaultMutableTreeNode node_départ,int id_groupe){
+    public static JTree  display_group( DefaultMutableTreeNode node,int id_groupe){
   
-        DefaultMutableTreeNode parent = node_départ;
+        DefaultMutableTreeNode parent = node;
 
         String path = Utils.TreeNode_to_String(parent.getPath());
 
-        MyGroupe g = new MyGroupe(id_groupe);
+        MyGroupe g = bd.brain.get(id_groupe);
 
       g.setPath(path);
 
-        group_map.put(path,g);
+        group_map.put(path,id_groupe);
         display_etudiant(g,g.getPath());
      
       if(id_groupe == 1 ){
@@ -150,7 +159,7 @@ public class DashboardGroupe extends JFrame {
                
                 parent.add(fils);
                 
-                Thread.dumpStack();
+                //Thread.dumpStack();
                
                  display_group(fils,sous_groupe.getId());
                 
@@ -158,8 +167,26 @@ public class DashboardGroupe extends JFrame {
             }   
   
 
-      return new JTree(root);
+            JTree arborescence_groupe = new JTree(root);
+            arborescence_groupe.addTreeSelectionListener(new Observateur_arborescence());
 
+      return arborescence_groupe;
+
+    }
+
+    public static void loadPanGroup(){
+
+        group_map.clear();
+       
+
+        arbre = display_group(new DefaultMutableTreeNode(bd.brain.get(1).getName()),1);
+
+        
+        pan_groupe.add(arbre);
+        gestionnaire.next(pan_groupe);
+       
+       
+        
     }
 
     

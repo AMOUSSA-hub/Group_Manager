@@ -1,7 +1,7 @@
 # COMMANDES #
 JAVAC = javac
 # note $$ to get a single shell $
-JAVAC_OPTIONS = -d build -cp .\build\ -sourcepath src   -encoding UTF-8
+JAVAC_OPTIONS = -d build -cp .\build\ -sourcepath src   -encoding UTF-8 -implicit:none
 JAVA = java
 JAVA_OPTIONS = -cp "build;\Users\amous\OneDrive\Documents\FIprojetIHM2022\APIGroupe\res\mariadb-client.jar" 
 JAR = jar
@@ -31,12 +31,12 @@ doc :
 	javadoc -d doc src/fr/iutfbleau/projetIHM2022FI2/API/*.java src/fr/iutfbleau/projetIHM2022FI2/MNP/*.java
 
 # POUR WINDOWS#
-clean : 
+clean_W : 
 	rd /s /q ${BUILD_WINDOWS}
 
-# POUR LINUX #
-#clean : 
-#	rm .\build\
+#POUR LINUX 
+clean : 
+	rm .\build\
 
 ##clean : 
 
@@ -56,9 +56,21 @@ ${BUILD}/API/Groupe.class : ${SRC}/API/Groupe.java \
 			     ${BUILD}/API/MonPrint.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/Groupe.java
 
+${BUILD}/API/MyGroupe.class : ${SRC}/API/MyGroupe.java \
+				${BUILD}/API/Groupe.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/MyGroupe.java
+
+
 ${BUILD}/API/Etudiant.class : ${SRC}/API/Etudiant.java \
                             ${BUILD}/API/MonPrint.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/Etudiant.java
+
+${BUILD}/API/MyEtudiant.class : ${SRC}/API/MyEtudiant.java \
+                            ${BUILD}/API/Etudiant.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/MyEtudiant.java
+
+
+
 
 ${BUILD}/API/Changement.class : ${SRC}/API/Changement.java \
 	  		            ${BUILD}/API/Etudiant.class \
@@ -69,6 +81,10 @@ ${BUILD}/API/AbstractGroupeFactory.class : ${SRC}/API/AbstractGroupeFactory.java
 				${BUILD}/API/Groupe.class \
 	  		         ${BUILD}/API/Etudiant.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/AbstractGroupeFactory.java
+
+${BUILD}/API/MyAbstractGroupeFactory.class : ${SRC}/API/MyAbstractGroupeFactory.java \
+				${BUILD}/API/AbstractGroupeFactory.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/MyAbstractGroupeFactory.java
 
 ${BUILD}/API/AbstractChangementFactory.class : ${SRC}/API/AbstractChangementFactory.java \
 	  		            ${BUILD}/API/AbstractGroupeFactory.class \
@@ -125,34 +141,52 @@ ${BUILD}/MNP/AbstractChangementFactoryNP.class : ${SRC}/MNP/AbstractChangementFa
 ${BUILD}/UTILS/Utils.class: ${SRC}/UTILS/Utils.java 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/UTILS/utils.java
 
+${BUILD}/UTILS/Chargement.class: ${SRC}/UTILS/Chargement.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/UTILS/Chargement.java	
+
 ## CONTROLLER ##
 
-${BUILD}/CONTROLLER/Observateur_CG.class: ${SRC}/CONTROLLER/Observateur_CG.java 
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_CG.java
+${BUILD}/CONTROLLER/ObservateurCreation.class: ${SRC}/CONTROLLER/ObservateurCreation.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/ObservateurCreation.java
 
 ${BUILD}/CONTROLLER/Observateur_arborescence.class: ${SRC}/CONTROLLER/Observateur_arborescence.java
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_arborescence.java
 
 ${BUILD}/CONTROLLER/Observateur_MEG.class: ${SRC}/CONTROLLER/Observateur_MEG.java \
 		${BUILD}/VIEW/CreationGroupe.class \
-		${BUILD}/VIEW/EditGroupe.class 
+		${BUILD}/VIEW/EditGroupe.class \
+		${BUILD}/VIEW/Creation_Etudiant.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_MEG.java
+
+${BUILD}/CONTROLLER/Observateur_EG.class: ${SRC}/CONTROLLER/Observateur_EG.java \
+		${BUILD}/UTILS/Chargement.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_EG.java
+
+
 
 ## VIEW ##
 
-${BUILD}/VIEW/EditGroupe.class: ${SRC}/VIEW/EditGroupe.java 
-		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/EditGroupe.java		
+${BUILD}/VIEW/EditGroupe.class: ${SRC}/VIEW/EditGroupe.java \
+		${BUILD}/CONTROLLER/Observateur_EG.class
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/EditGroupe.java	
+
+${BUILD}/VIEW/Creation_Etudiant.class: ${SRC}/VIEW/Creation_Etudiant.java 
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Creation_Etudiant.java	
 
 
 ${BUILD}/VIEW/CreationGroupe.class: ${SRC}/VIEW/CreationGroupe.java \
-				${BUILD}/CONTROLLER/Observateur_CG.class \ 
+				${BUILD}/CONTROLLER/ObservateurCreation.class \ 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/CreationGroupe.java
 
 
 ${BUILD}/VIEW/DashboardGroupe.class: ${SRC}/VIEW/DashboardGroupe.java \
 				${BUILD}/UTILS/Utils.class \
 				${BUILD}/CONTROLLER/Observateur_arborescence.class \
-				${BUILD}/CONTROLLER/Observateur_MEG.class \				
+				${BUILD}/CONTROLLER/Observateur_MEG.class \
+				${BUILD}/API/MyGroupe.class \
+				${BUILD}/API/MyEtudiant.class \
+				${BUILD}/API/MyAbstractGroupeFactory.class \
+
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/DashboardGroupe.java
 	
 

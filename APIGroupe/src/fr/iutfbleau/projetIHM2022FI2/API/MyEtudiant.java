@@ -10,6 +10,10 @@ public class MyEtudiant implements Etudiant {
     private String prenom;
 
 
+ /**
+     * permet de créer un objet représentant un étudiant déjà présent dans la base de données 
+     * 
+     */
     public MyEtudiant(int id_etudiant){
 
         Utils.open_connection();
@@ -37,6 +41,42 @@ public class MyEtudiant implements Etudiant {
 
 
 
+    }
+    /**
+     * permet de créer un étudiant et de l'ajouter à la bd 
+     * 
+     */
+
+    public MyEtudiant(String nom, String prenom){
+        
+        this.nom = nom;
+        this.prenom = prenom;
+        Utils.open_connection();
+        try{
+        PreparedStatement req = Utils.con.prepareStatement("INSERT INTO Etudiant (Etudiant.NomEtudiant, Etudiant.Prenom) VALUES (?,?) ");
+        req.setString(1, nom);
+        req.setString(2, prenom);
+        req.executeUpdate();
+        
+       
+
+        req =  Utils.con.prepareStatement("select MAX(Etudiant.id) from Etudiant where NomEtudiant = ? AND Prenom = ? ");
+        req.setString(1, nom);
+        req.setString(2, prenom);
+        ResultSet res = req.executeQuery();
+        res.next();
+        id = res.getInt(1);
+        
+        
+
+        
+
+   } catch (SQLException  se) {
+            System.err.println("errreur Sql at EtudiantNP():"+se);
+
+        }
+
+        Utils.close_connection();
     }
 
      /**

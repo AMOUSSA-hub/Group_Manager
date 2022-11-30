@@ -1,7 +1,7 @@
 package fr.iutfbleau.projetIHM2022FI2.VIEW;
 import javax.swing.*;
 
-import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.Observateur_CG;
+import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.ObservateurCreation;
 
 import java.awt.*;
 
@@ -29,7 +29,7 @@ public class CreationGroupe extends JDialog {
         
 
          JButton valider = new JButton("créer le groupe");
-         valider.addActionListener(new Observateur_CG(nom_groupe, min_member, max_member));
+         valider.addActionListener(new ObservateurCreation(nom_groupe, min_member, max_member));
 
 
         add(new JLabel("Nom du groupe"),BorderLayout.CENTER);

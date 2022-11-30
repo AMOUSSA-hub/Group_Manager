@@ -1,6 +1,12 @@
 package fr.iutfbleau.projetIHM2022FI2.MNP;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
+import fr.iutfbleau.projetIHM2022FI2.UTILS.Utils;
+
 import java.util.*;
+import java.sql.*;
+
+
+import javax.swing.text.Utilities;
 /**
  * Un étudiant
  */
@@ -21,6 +27,8 @@ public class EtudiantNP implements Etudiant{
         this.id=++this.nextId;
         this.nom=nom;
         this.prenom=prenom;
+
+
     }
     
     /**

@@ -5,6 +5,7 @@ import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.MyGroupe;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.CreationGroupe;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Creation_Etudiant;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.EditGroupe;
 
 
@@ -22,7 +23,7 @@ public class Observateur_MEG implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
 
-        if(e.getActionCommand().equals("créer")){
+        if(e.getActionCommand().equals("créer un groupe")){
 
             System.out.println("demande de création de groupe ");
             new CreationGroupe(fen_menu_edit);
@@ -42,10 +43,21 @@ public class Observateur_MEG implements ActionListener {
 
 
             new EditGroupe(Observateur_arborescence.group_selected,fen_menu_edit);
-            System.out.println(Observateur_arborescence.group_selected);
+           
             
 
         }
+
+        if(e.getActionCommand().equals("ajouter etudiant")){
+
+
+
+            new Creation_Etudiant(fen_menu_edit);
+           
+            
+
+        }
+
 
 
     }

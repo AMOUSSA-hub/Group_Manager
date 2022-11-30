@@ -43,6 +43,8 @@ public class AbstractGroupeFactoryNP implements AbstractGroupeFactory {
      * @return la promo.
      */
     public Groupe getPromotion(){
+
+        this.promo = new MyGroupe(1);
         return this.promo;
     }
 
