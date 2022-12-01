@@ -3,7 +3,6 @@ package fr.iutfbleau.projetIHM2022FI2.VIEW.Admin;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
 import fr.iutfbleau.projetIHM2022FI2.MNP.GroupeNP;
-//import fr.iutfbleau.projetIHM2022FI2.UTILS.Icone;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.*;
 
 import java.awt.*;
@@ -159,7 +158,7 @@ public class DashboardGroupe extends JFrame {
                
                 parent.add(fils);
                 
-                //Thread.dumpStack();
+                
                
                  display_group(fils,sous_groupe.getId());
                 
@@ -184,6 +183,8 @@ public class DashboardGroupe extends JFrame {
         
         pan_groupe.add(arbre);
         gestionnaire.next(pan_groupe);
+
+        menu_fen.setVisible(true);
        
        
         

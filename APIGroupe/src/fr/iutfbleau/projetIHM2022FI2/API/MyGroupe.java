@@ -1,6 +1,10 @@
 package fr.iutfbleau.projetIHM2022FI2.API;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.*;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
+
 import java.util.*;
+
+import javax.swing.JDialog;
 
 import java.sql.*;
 
@@ -9,7 +13,7 @@ public class MyGroupe implements Groupe {
 
     private int id;
     private String name;
-    private int idfather;
+    private  MyGroupe father;
     private int min;
     private int max;
     private TypeGroupe type;
@@ -34,7 +38,7 @@ public class MyGroupe implements Groupe {
             res.next();
             id = res.getInt(1);
             name = res.getString(2);
-            idfather = res.getInt(3);
+            father = new MyGroupe(res.getInt(3)) ;
             min = res.getInt(4);
             max = res.getInt(5);
             
@@ -76,6 +80,13 @@ public class MyGroupe implements Groupe {
             }
 
             
+
+   }
+
+   public MyGroupe(Groupe pere, String name, int min, int max){
+
+    
+
 
    }
 
@@ -224,7 +235,7 @@ public class MyGroupe implements Groupe {
 
     public Groupe getPointPoint(){
 
-        return new MyGroupe(idfather);
+        return father;
     };
 
     
@@ -244,7 +255,7 @@ public class MyGroupe implements Groupe {
 
             while(res.next()){
 
-                all_sous_groupe.add(new MyGroupe(res.getInt(1)));
+                all_sous_groupe.add(DashboardGroupe.bd.brain.get(res.getInt(1)) );
             }
 
    
@@ -299,9 +310,9 @@ public class MyGroupe implements Groupe {
 
     }
 
-    public void setPath (String init_path){
+    public void setPath (String path){
 
-        path = init_path;
+        this.path = path;
     }
 
     public String getPath(){
@@ -318,7 +329,7 @@ public class MyGroupe implements Groupe {
 
         Utils.open_connection();
 
-        this.name = new_name;
+        
 
         try{
 
@@ -330,8 +341,12 @@ public class MyGroupe implements Groupe {
               if(check !=0){
 
                 System.out.println("commande traité avec succès");
+                this.name = new_name;
+                System.out.println("nouveau nom : "+name);
+                return true;
               }
 
+              
               
     
             
@@ -343,7 +358,9 @@ public class MyGroupe implements Groupe {
         Utils.close_connection();
 
 
-        return true;
+        return false;
+
+    
     }
 /* 
     public static void main(String[] args) {

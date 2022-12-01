@@ -141,8 +141,7 @@ ${BUILD}/MNP/AbstractChangementFactoryNP.class : ${SRC}/MNP/AbstractChangementFa
 ${BUILD}/UTILS/Utils.class: ${SRC}/UTILS/Utils.java 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/UTILS/utils.java
 
-${BUILD}/UTILS/Chargement.class: ${SRC}/UTILS/Chargement.java 
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/UTILS/Chargement.java	
+	
 
 ## CONTROLLER ##
 
@@ -159,7 +158,7 @@ ${BUILD}/CONTROLLER/Observateur_MEG.class: ${SRC}/CONTROLLER/Observateur_MEG.jav
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_MEG.java
 
 ${BUILD}/CONTROLLER/Observateur_EG.class: ${SRC}/CONTROLLER/Observateur_EG.java \
-		${BUILD}/UTILS/Chargement.class
+		${BUILD}/VIEW/Admin/Ajout_Etudiant.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_EG.java
 
 
@@ -185,11 +184,11 @@ ${BUILD}/VIEW/Admin/DashboardGroupe.class: ${SRC}/VIEW/Admin/DashboardGroupe.jav
 				${BUILD}/CONTROLLER/Observateur_MEG.class \
 				${BUILD}/API/MyGroupe.class \
 				${BUILD}/API/MyEtudiant.class \
-				${BUILD}/API/MyAbstractGroupeFactory.class \
-
+				${BUILD}/API/MyAbstractGroupeFactory.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/DashboardGroupe.java
 	
-
+${BUILD}/VIEW/Admin/Ajout_Etudiant.class: ${SRC}/VIEW/Admin/Ajout_Etudiant.java 
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Ajout_Etudiant.java
 
 
 

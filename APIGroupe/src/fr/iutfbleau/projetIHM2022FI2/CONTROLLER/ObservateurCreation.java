@@ -4,9 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.*;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.CreationGroupe;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 
 public class ObservateurCreation implements ActionListener {
 
@@ -42,7 +40,9 @@ public class ObservateurCreation implements ActionListener {
             if(e.getActionCommand().equals("créer le groupe")  ){
                 if(nom_groupe.getText().replaceAll("\\s", "").length() != 0){
 
-                    
+
+
+                    //new MyGroupe()
 
                     System.out.println("nom du groupe :"+nom_groupe.getText().replaceAll("\\s", "") +"\n nombre min de membre :" + ((Number)min_mem.getValue()).intValue() + "\n nombre max de membre: " +((Number)max_mem.getValue()).intValue());
                     

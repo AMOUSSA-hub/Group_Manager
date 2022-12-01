@@ -3,8 +3,7 @@ import javax.swing.event.*;
 import javax.swing.tree.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.*;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 
 
 public class Observateur_arborescence implements TreeSelectionListener {

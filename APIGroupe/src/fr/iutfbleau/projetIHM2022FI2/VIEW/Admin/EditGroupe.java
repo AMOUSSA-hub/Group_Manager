@@ -27,6 +27,7 @@ public class EditGroupe extends JDialog {
         JButton rename  = new JButton("renommer");
         rename.addActionListener(new Observateur_EG(groupe, new_name,this));
         JButton ajout_eleve = new JButton("ajouter  un eleve");
+        ajout_eleve.addActionListener(new Observateur_EG(this,groupe));
         JButton ajout_sous_groupe = new JButton("créer un sous groupe");
         
         header.add(new JLabel(groupe.getName()),BorderLayout.CENTER);
