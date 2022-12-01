@@ -1,9 +1,10 @@
 # COMMANDES #
 JAVAC = javac
 # note $$ to get a single shell $
-JAVAC_OPTIONS = -d build -cp .\build\ -sourcepath src   -encoding UTF-8 -implicit:none
+JAVAC_OPTIONS = -d build -cp build -sourcepath src   -encoding UTF-8 -implicit:none
 JAVA = java
-JAVA_OPTIONS = -cp "build;\Users\amous\OneDrive\Documents\FIprojetIHM2022\APIGroupe\res\mariadb-client.jar" 
+JAVA_OPTIONS_W = -cp "build;res/mariadb-client.jar" 
+JAVA_OPTIONS = -cp "build:res/mariadb-client.jar" 
 JAR = jar
 EXEC_JAR = ${JAVA} -jar
 SUP = rm -rf
@@ -22,6 +23,9 @@ JAR_MNP = test-mnp.jar
 # BUT PAR DEFAUT #
 run : ${BUILD}/VIEW/Admin/DashboardGroupe.class
 	${JAVA} ${JAVA_OPTIONS} fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe
+
+run_W : ${BUILD}/VIEW/Admin/DashboardGroupe.class
+	${JAVA} ${JAVA_OPTIONS_W} fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe
 
 #${JAR_MNP}
 #${EXEC_JAR} ${JAR_MNP}
@@ -139,7 +143,7 @@ ${BUILD}/MNP/AbstractChangementFactoryNP.class : ${SRC}/MNP/AbstractChangementFa
 ##UTILS#
 
 ${BUILD}/UTILS/Utils.class: ${SRC}/UTILS/Utils.java 
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/UTILS/utils.java
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/UTILS/Utils.java
 
 	
 
