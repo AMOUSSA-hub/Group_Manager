@@ -13,6 +13,7 @@ public class MyGroupe implements Groupe {
 
     private int id;
     private String name;
+    private int id_father;
     private  MyGroupe father;
     private int min;
     private int max;
@@ -38,7 +39,7 @@ public class MyGroupe implements Groupe {
             res.next();
             id = res.getInt(1);
             name = res.getString(2);
-            father = new MyGroupe(res.getInt(3)) ;
+            id_father = res.getInt(id_groupe)  ;
             min = res.getInt(4);
             max = res.getInt(5);
             
@@ -234,6 +235,9 @@ public class MyGroupe implements Groupe {
 
 
     public Groupe getPointPoint(){
+
+        if(father == null)
+        father = new MyGroupe(id_father);
 
         return father;
     };
