@@ -178,7 +178,7 @@ ${BUILD}/VIEW/Admin/Creation_Etudiant.class: ${SRC}/VIEW/Admin/Creation_Etudiant
 
 
 ${BUILD}/VIEW/Admin/CreationGroupe.class: ${SRC}/VIEW/Admin/CreationGroupe.java \
-				${BUILD}/CONTROLLER/ObservateurCreation.class \ 
+				${BUILD}/CONTROLLER/ObservateurCreation.class  
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/CreationGroupe.java
 
 
