@@ -5,25 +5,38 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ChoixProfil extends JFrame {
+	public JFrame fenetre = new JFrame("Choix du Profil");
+	public JComboBox<String> choix = new JComboBox<String>();
+
 	public ChoixProfil() {
-		setLocation(10,10);
-        	setSize(new Dimension(250,250));
-        	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ObservateurChoixProfil listener = new ObservateurChoixProfil(this);
+
+		fenetre.setLocation(700,200);
+        	fenetre.setSize(new Dimension(300,300));
+		fenetre.setLayout(new GridLayout(2,1));
+        	fenetre.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		
 		JPanel panneau = new JPanel();
-		JButton etudiant = new JButton("Etudiant");
-		JButton prof = new JButton("Professeur");
-		JButton admin = new JButton("Admin");
+		((FlowLayout) panneau.getLayout()).setAlignment(FlowLayout.CENTER);
+		JPanel panneau1 = new JPanel();
+		((FlowLayout) panneau1.getLayout()).setAlignment(FlowLayout.CENTER);
 
-		panneau.add(etudiant);
-		panneau.add(prof);
-		panneau.add(admin);
-		add(panneau);
+		choix.addItem("Etudiant");
+		choix.addItem("Professeur");
+		choix.addItem("Administrateur");
+		panneau1.add(choix);
 
-		setVisible(true);
+		JButton valider = new JButton("Valider");
+		valider.addActionListener(listener);
+		panneau1.add(valider);
+
+		fenetre.add(panneau);
+		fenetre.add(panneau1);
+
+		fenetre.setVisible(true);
 	}
 
 	public static void main(String[] args) {
-		new ChoixProfil();
+		ChoixProfil choix = new ChoixProfil();
 	}
 }
