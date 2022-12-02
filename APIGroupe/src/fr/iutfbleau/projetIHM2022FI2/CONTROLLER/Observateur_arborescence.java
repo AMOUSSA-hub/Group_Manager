@@ -1,8 +1,8 @@
 package fr.iutfbleau.projetIHM2022FI2.CONTROLLER;
-import javax.swing.event.*;
-import javax.swing.tree.*;
 
-import fr.iutfbleau.projetIHM2022FI2.API.*;
+import javax.swing.event.*;
+
+import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 
 
@@ -11,7 +11,7 @@ public class Observateur_arborescence implements TreeSelectionListener {
     public static MyGroupe  group_selected = null;
     public static int id_group;
   
-
+    @Override
     public void valueChanged(TreeSelectionEvent e) {
 
         

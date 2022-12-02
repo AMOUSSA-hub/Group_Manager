@@ -1,13 +1,9 @@
 package fr.iutfbleau.projetIHM2022FI2.CONTROLLER;
-import java.awt.event.*;
 
+import java.awt.event.*;
 import javax.swing.*;
 
-import fr.iutfbleau.projetIHM2022FI2.API.MyGroupe;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.CreationGroupe;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.Creation_Etudiant;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.EditGroupe;
-
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 
 public class Observateur_MEG implements ActionListener {
 
@@ -21,9 +17,11 @@ public class Observateur_MEG implements ActionListener {
     public Observateur_MEG(){}
 
 
+    @Override
+
     public void actionPerformed(ActionEvent e){
 
-        if(e.getActionCommand().equals("créer un groupe")){
+        if(e.getActionCommand().equals("créer un groupe libre")){
 
             System.out.println("demande de création de groupe ");
             new CreationGroupe(fen_menu_edit);

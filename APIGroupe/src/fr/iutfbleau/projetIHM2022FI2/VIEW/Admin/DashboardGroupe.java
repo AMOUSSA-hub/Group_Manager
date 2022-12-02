@@ -2,14 +2,14 @@ package fr.iutfbleau.projetIHM2022FI2.VIEW.Admin;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
-import fr.iutfbleau.projetIHM2022FI2.MNP.GroupeNP;
+import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.*;
 
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.tree.*;
-import java.sql.*;
+
 
 
 
@@ -36,7 +36,7 @@ public class DashboardGroupe extends JFrame {
         JPanel north_pan = new JPanel();
         JPanel south_pan = new JPanel();
         pan_groupe = new JPanel();
-        JButton creation_groupe = new JButton("créer un groupe");
+        JButton creation_groupe = new JButton("créer un groupe libre");
         JButton ajout_etudiant = new JButton("ajouter etudiant");
 
         pan_groupe.setLayout(gestionnaire);
@@ -52,7 +52,7 @@ public class DashboardGroupe extends JFrame {
 
         
       
-        arbre =  display_group(new DefaultMutableTreeNode(bd.brain.get(1).getName()),1);
+        arbre =  display_group(new DefaultMutableTreeNode(bd.getPromotion().getName()),1);
           
        
   
@@ -60,7 +60,7 @@ public class DashboardGroupe extends JFrame {
         pan_groupe.add(arbre);
         north_pan.add(pan_groupe);
         north_pan.add(new JScrollPane(pan_groupe));
-        north_pan.add(menu_etudiant);
+        north_pan.add(new JScrollPane(menu_etudiant));
         
 
         modification_groupe.setEnabled(false);
@@ -90,7 +90,8 @@ public class DashboardGroupe extends JFrame {
     
     public static void display_etudiant (Groupe groupe_selected,String titre_diapo){
 
-         JPanel diapositive_etudiant = new JPanel(); 
+         JPanel diapositive_etudiant = new JPanel();
+         
         int nbr_etudiant = 0;
 
         Set<Etudiant> list_etu =  groupe_selected.getEtudiants();
@@ -102,13 +103,23 @@ public class DashboardGroupe extends JFrame {
             info_etudiant.setBorder(BorderFactory.createLineBorder(Color.black));
             Etudiant a = iterator.next();
 
-            nbr_etudiant++;
+           
                 info_etudiant.add(new JLabel(a.getNom()+ " "+  a.getPrenom() ));
-                JButton info = new JButton("infos");
-           info_etudiant.add(info);
-            if(groupe_selected.getId() != 1){
-                info_etudiant.add(new JButton("Supprimer"));
+                if(groupe_selected.getId() != 1){
+                JButton move = new JButton("Déplacer");
+                move.setActionCommand(a.getId()+"");
+                move.addActionListener(new Observateur_menu_etudiant(a));
+           info_etudiant.add(move);
+                JButton supp = new JButton("Supprimer");
+                supp.setActionCommand(a.getId()+"");
+                info_etudiant.add(supp);
+                supp.addActionListener(new Observateur_menu_etudiant(a));
+
+                
             }
+
+            
+            
 
             diapositive_etudiant.add(info_etudiant);
         }
@@ -116,7 +127,7 @@ public class DashboardGroupe extends JFrame {
 
 
               
-            diapositive_etudiant.setLayout(new GridLayout(nbr_etudiant,3));
+            diapositive_etudiant.setLayout(new GridLayout(list_etu.size(),3));
             
 
         menu_etudiant.add(diapositive_etudiant,groupe_selected.getId()+"");
@@ -178,11 +189,12 @@ public class DashboardGroupe extends JFrame {
         group_map.clear();
        
 
-        arbre = display_group(new DefaultMutableTreeNode(bd.brain.get(1).getName()),1);
+        arbre = display_group(new DefaultMutableTreeNode(bd.getPromotion().getName()),1);
 
         
         pan_groupe.add(arbre);
         gestionnaire.next(pan_groupe);
+        gestionnaire.show(menu_etudiant,Observateur_arborescence.group_selected.getId()+"");
 
         menu_fen.setVisible(true);
        

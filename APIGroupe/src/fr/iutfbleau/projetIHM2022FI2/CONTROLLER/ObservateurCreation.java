@@ -1,9 +1,9 @@
 package fr.iutfbleau.projetIHM2022FI2.CONTROLLER;
-import java.awt.event.*;
 
+import java.awt.event.*;
 import javax.swing.*;
 
-import fr.iutfbleau.projetIHM2022FI2.API.*;
+import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 
 public class ObservateurCreation implements ActionListener {
@@ -32,6 +32,7 @@ public class ObservateurCreation implements ActionListener {
         this.fen = fen;
     }
 
+    @Override
 
     public void actionPerformed(ActionEvent e){
 

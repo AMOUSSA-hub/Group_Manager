@@ -1,11 +1,11 @@
-package fr.iutfbleau.projetIHM2022FI2.API;
+package fr.iutfbleau.projetIHM2022FI2.MODEL;
+
+
+import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.*;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 
 import java.util.*;
-
-import javax.swing.JDialog;
-
 import java.sql.*;
 
 
@@ -13,19 +13,24 @@ public class MyGroupe implements Groupe {
 
     private int id;
     private String name;
+    private int id_father;
     private  MyGroupe father;
     private int min;
     private int max;
     private TypeGroupe type;
-    private int size;
+    private int size = 0;
     private String path;
-    private Set<Etudiant> all_etudiant = new HashSet<>();
-    private Set<Groupe> all_sous_groupe = new HashSet<>();
+    private Set<Etudiant> membre_groupe ;
+    private Set<Groupe> sous_groupes;
     
 
 
 
     public MyGroupe(int id_groupe){
+
+        
+
+        
 
 
         Utils.open_connection();
@@ -35,38 +40,34 @@ public class MyGroupe implements Groupe {
                 PreparedStatement req = Utils.con.prepareStatement("Select * from Groupe where Id = ? ");
             req.setInt(1,id_groupe);
             ResultSet res = req.executeQuery();
-            res.next();
-            id = res.getInt(1);
-            name = res.getString(2);
-            father = new MyGroupe(res.getInt(3)) ;
-            min = res.getInt(4);
-            max = res.getInt(5);
+            while (res.next()){
+                id = res.getInt(1);
+                name = res.getString(2);
+                id_father = res.getInt(3)  ;
+                min = res.getInt(4);
+                max = res.getInt(5);
+                
+                switch(res.getString(6)){
+
+
+                    case "Tous les étudiants":
+                        type = TypeGroupe.ROOT;
+
+                    case "partition":
+                    type = TypeGroupe.PARTITION;
+
+                    case "libre":
+                    type = TypeGroupe.FREE;
+                }
+        }
+
             
-            switch(res.getString(6)){
-
-
-                case "Tous les étudiants":
-                    type = TypeGroupe.ROOT;
-
-                case "partition":
-                type = TypeGroupe.PARTITION;
-
-                case "libre":
-                type = TypeGroupe.FREE;
-            }
 
             
 
-            size = res.getInt(7);
-
-
-             req = Utils.con.prepareStatement("SELECT COUNT(*) FROM Contient WHERE Contient.idGroupe = ?");
-                req.setInt(1,id);
-                 res = req.executeQuery();
     
                        
-                res.next();
-                size = res.getInt(1);
+        
                  
             
             
@@ -79,11 +80,15 @@ public class MyGroupe implements Groupe {
 
             }
 
+        this.membre_groupe  = new HashSet<>();
+        this.sous_groupes = new HashSet<>();
+
             
 
    }
 
    public MyGroupe(Groupe pere, String name, int min, int max){
+    Objects.requireNonNull(name,"On ne peut pas créer un groupe dont le nom est null");
 
     
 
@@ -99,7 +104,8 @@ public class MyGroupe implements Groupe {
    
    public boolean addEtudiant(Etudiant e){
 
-        all_etudiant.add(e);
+        membre_groupe.add(e);
+        size++;
 
         Utils.open_connection();
 
@@ -128,6 +134,9 @@ public class MyGroupe implements Groupe {
     
     
     public boolean removeEtudiant(Etudiant e){
+
+        membre_groupe.remove(e);
+        size--;
 
         Utils.open_connection();
 
@@ -187,7 +196,7 @@ public class MyGroupe implements Groupe {
     
     
            } catch (SQLException  se) {
-                    System.err.println("errreur Sql at addSousGroupe():"+se);
+                    System.err.println("errreur Sql at removeSousGroupe():"+se);
     
                 }
 
@@ -235,6 +244,9 @@ public class MyGroupe implements Groupe {
 
     public Groupe getPointPoint(){
 
+        if(father == null)
+        father = new MyGroupe(id_father);
+
         return father;
     };
 
@@ -242,7 +254,7 @@ public class MyGroupe implements Groupe {
     
     public Set<Groupe> getSousGroupes(){
 
-        if(all_sous_groupe.isEmpty()){
+        if(sous_groupes.isEmpty()){
         Utils.open_connection();
         
     try{
@@ -255,12 +267,12 @@ public class MyGroupe implements Groupe {
 
             while(res.next()){
 
-                all_sous_groupe.add(DashboardGroupe.bd.brain.get(res.getInt(1)) );
+                sous_groupes.add(DashboardGroupe.bd.brain.get(res.getInt(1)) );
             }
 
    
         } catch (SQLException e) {
-            System.err.println("errreur Sql at getSousgroupe()"+e);
+            System.err.println("errreur Sql at getSousgroupes()"+e);
             
           }
 
@@ -269,7 +281,7 @@ public class MyGroupe implements Groupe {
         }
 
 
-            return all_sous_groupe;
+            return sous_groupes;
 
 
 
@@ -280,7 +292,7 @@ public class MyGroupe implements Groupe {
     public Set<Etudiant> getEtudiants(){
 
         
-    if(all_etudiant.isEmpty()){
+    if(membre_groupe.isEmpty()){
         
         Utils.open_connection();
 
@@ -291,8 +303,8 @@ public class MyGroupe implements Groupe {
             ResultSet res = req.executeQuery();
 
             while(res.next()){
-
-                all_etudiant.add(new MyEtudiant(res.getInt(1)));
+                size++;
+                membre_groupe.add(new MyEtudiant(res.getInt(1)));
             }
 
            
@@ -306,7 +318,7 @@ public class MyGroupe implements Groupe {
     
     }
 
-        return all_etudiant;
+        return membre_groupe;
 
     }
 

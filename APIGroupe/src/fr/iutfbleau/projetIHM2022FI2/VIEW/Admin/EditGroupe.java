@@ -1,8 +1,8 @@
 package fr.iutfbleau.projetIHM2022FI2.VIEW.Admin;
 import javax.swing.*;
 
-import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
+import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 
 import java.awt.*;
 
@@ -26,9 +26,9 @@ public class EditGroupe extends JDialog {
         
         JButton rename  = new JButton("renommer");
         rename.addActionListener(new Observateur_EG(groupe, new_name,this));
-        JButton ajout_eleve = new JButton("ajouter  un eleve");
+        JButton ajout_eleve = new JButton("ajouter  des étudiants");
         ajout_eleve.addActionListener(new Observateur_EG(this,groupe));
-        JButton ajout_sous_groupe = new JButton("créer un sous groupe");
+        JButton ajout_sous_groupe = new JButton("Partitioner");
         
         header.add(new JLabel(groupe.getName()),BorderLayout.CENTER);
         middle.add(new_name);

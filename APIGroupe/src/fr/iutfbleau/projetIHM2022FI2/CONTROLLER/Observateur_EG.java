@@ -1,12 +1,10 @@
 package fr.iutfbleau.projetIHM2022FI2.CONTROLLER;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.tree.*;
-import javax.swing.*;
-import java.lang.*;
 
-import fr.iutfbleau.projetIHM2022FI2.API.*;
-import fr.iutfbleau.projetIHM2022FI2.UTILS.Chargement;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 
 public class Observateur_EG implements ActionListener {
@@ -30,6 +28,8 @@ public class Observateur_EG implements ActionListener {
         this.group_selected = group;
 
     }
+
+    @Override
 
     public void actionPerformed(ActionEvent e){
 
@@ -60,7 +60,7 @@ public class Observateur_EG implements ActionListener {
                 
         }
 
-        if(e.getActionCommand().equals("ajouter  un eleve")){
+        if(e.getActionCommand().equals("ajouter  des étudiants")){
 
 
             System.out.println("ajouter un élève");
