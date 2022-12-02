@@ -1,6 +1,8 @@
-package fr.iutfbleau.projetIHM2022FI2.API;
-import java.sql.*;
+package fr.iutfbleau.projetIHM2022FI2.MODEL;
 
+import java.sql.*;
+import java.util.*;
+import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.Utils;
 
 public class MyEtudiant implements Etudiant {
@@ -48,7 +50,9 @@ public class MyEtudiant implements Etudiant {
      */
 
     public MyEtudiant(String nom, String prenom){
-        
+        Objects.requireNonNull(nom,"On ne peut pas créer un étudiant avec un nom null");
+        Objects.requireNonNull(prenom,"On ne peut pas créer un étudiant avec un nom null");
+        // auto incrément de l'id
         this.nom = nom;
         this.prenom = prenom;
         Utils.open_connection();

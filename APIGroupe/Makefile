@@ -60,18 +60,12 @@ ${BUILD}/API/Groupe.class : ${SRC}/API/Groupe.java \
 			     ${BUILD}/API/MonPrint.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/Groupe.java
 
-${BUILD}/API/MyGroupe.class : ${SRC}/API/MyGroupe.java \
-				${BUILD}/API/Groupe.class
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/MyGroupe.java
-
 
 ${BUILD}/API/Etudiant.class : ${SRC}/API/Etudiant.java \
                             ${BUILD}/API/MonPrint.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/Etudiant.java
 
-${BUILD}/API/MyEtudiant.class : ${SRC}/API/MyEtudiant.java \
-                            ${BUILD}/API/Etudiant.class
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/MyEtudiant.java
+
 
 
 
@@ -86,9 +80,7 @@ ${BUILD}/API/AbstractGroupeFactory.class : ${SRC}/API/AbstractGroupeFactory.java
 	  		         ${BUILD}/API/Etudiant.class 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/AbstractGroupeFactory.java
 
-${BUILD}/API/MyAbstractGroupeFactory.class : ${SRC}/API/MyAbstractGroupeFactory.java \
-				${BUILD}/API/AbstractGroupeFactory.class
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/API/MyAbstractGroupeFactory.java
+
 
 ${BUILD}/API/AbstractChangementFactory.class : ${SRC}/API/AbstractChangementFactory.java \
 	  		            ${BUILD}/API/AbstractGroupeFactory.class \
@@ -145,9 +137,30 @@ ${BUILD}/MNP/AbstractChangementFactoryNP.class : ${SRC}/MNP/AbstractChangementFa
 ${BUILD}/UTILS/Utils.class: ${SRC}/UTILS/Utils.java 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/UTILS/Utils.java
 
+##MODEL##
+
+
+${BUILD}/MODEL/MyGroupe.class: ${SRC}/MODEL/MyGroupe.java \
+				${BUILD}/API/Groupe.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MODEL/MyGroupe.java
+
+${BUILD}/MODEL/MyEtudiant.class: ${SRC}/MODEL/MyEtudiant.java \
+                            ${BUILD}/API/Etudiant.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MODEL/MyEtudiant.java
+
+
+${BUILD}/MODEL/MyAbstractGroupeFactory.class: ${SRC}/MODEL/MyAbstractGroupeFactory.java \
+				${BUILD}/API/AbstractGroupeFactory.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MODEL/MyAbstractGroupeFactory.java
+
+
 	
 
 ## CONTROLLER ##
+
+${BUILD}/CONTROLLER/Observateur_ajout_etudiant.class: ${SRC}/CONTROLLER/Observateur_ajout_etudiant.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_ajout_etudiant.java
+
 
 ${BUILD}/CONTROLLER/ObservateurCreation.class: ${SRC}/CONTROLLER/ObservateurCreation.java 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/ObservateurCreation.java
@@ -165,9 +178,16 @@ ${BUILD}/CONTROLLER/Observateur_EG.class: ${SRC}/CONTROLLER/Observateur_EG.java 
 		${BUILD}/VIEW/Admin/Ajout_Etudiant.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_EG.java
 
+${BUILD}/CONTROLLER/Observateur_menu_etudiant.class: ${SRC}/CONTROLLER/Observateur_menu_etudiant.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_menu_etudiant.java
+
+
 
 
 ## VIEW ##
+
+
+
 
 ${BUILD}/VIEW/Admin/EditGroupe.class: ${SRC}/VIEW/Admin/EditGroupe.java \
 		${BUILD}/CONTROLLER/Observateur_EG.class
@@ -186,12 +206,14 @@ ${BUILD}/VIEW/Admin/DashboardGroupe.class: ${SRC}/VIEW/Admin/DashboardGroupe.jav
 				${BUILD}/UTILS/Utils.class \
 				${BUILD}/CONTROLLER/Observateur_arborescence.class \
 				${BUILD}/CONTROLLER/Observateur_MEG.class \
-				${BUILD}/API/MyGroupe.class \
-				${BUILD}/API/MyEtudiant.class \
-				${BUILD}/API/MyAbstractGroupeFactory.class 
+				${BUILD}/MODEL/MyGroupe.class \
+				${BUILD}/MODEL/MyEtudiant.class \
+				${BUILD}/MODEL/MyAbstractGroupeFactory.class \
+				${BUILD}/CONTROLLER/Observateur_menu_etudiant.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/DashboardGroupe.java
 	
-${BUILD}/VIEW/Admin/Ajout_Etudiant.class: ${SRC}/VIEW/Admin/Ajout_Etudiant.java 
+${BUILD}/VIEW/Admin/Ajout_Etudiant.class: ${SRC}/VIEW/Admin/Ajout_Etudiant.java \
+				${BUILD}/CONTROLLER/Observateur_ajout_etudiant.class
 		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Ajout_Etudiant.java
 
 
