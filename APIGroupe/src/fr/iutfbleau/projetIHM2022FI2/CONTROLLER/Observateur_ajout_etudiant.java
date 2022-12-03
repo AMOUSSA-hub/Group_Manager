@@ -6,7 +6,6 @@ import java.awt.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
-import fr.iutfbleau.projetIHM2022FI2.MODEL.MyAbstractGroupeFactory;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 
 public class Observateur_ajout_etudiant implements MouseListener {
@@ -44,7 +43,7 @@ public JDialog fen;
         if(e.getSource() == valider){
 
             if(selection.size()!=0){
-                //fen.dispose();
+                fen.dispose();
                 Iterator<Etudiant> iterator = selection.iterator();
 
                 while(iterator.hasNext()){    
@@ -54,6 +53,7 @@ public JDialog fen;
                 }
 
                 DashboardGroupe.loadPanGroup();
+                selection.clear();
         }
         }
 
@@ -76,6 +76,7 @@ public JDialog fen;
             selection.add(etudiant_clicked);
             selected = true;
             System.out.println("+");
+            System.out.println(selection.size()); 
         }
 
 
@@ -85,6 +86,7 @@ public JDialog fen;
             selection.remove(etudiant_clicked);
             selected =false;
             System.out.println("-");
+            System.out.println(selection.size());
         }
 
       

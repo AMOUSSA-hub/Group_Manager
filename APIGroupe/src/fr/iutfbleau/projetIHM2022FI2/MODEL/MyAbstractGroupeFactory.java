@@ -11,7 +11,7 @@ public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
 
     public MyAbstractGroupeFactory(){
 
-        Utils.open_connection();
+        
 
         try{
 
@@ -22,7 +22,7 @@ public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
                 brain.put(res.getInt(1), new MyGroupe(res.getInt(1)));
             }
         
-        Utils.close_connection();
+        
 
             } catch (SQLException  se) {
                 System.err.println("errreur Sql at MyAbstractGroupeFactory()"+se);

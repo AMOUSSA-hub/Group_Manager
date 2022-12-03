@@ -21,9 +21,9 @@ public class Observateur_MEG implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
 
-        if(e.getActionCommand().equals("créer un groupe libre")){
+        if(e.getActionCommand().equals("créer un sous-groupe libre")){
 
-            System.out.println("demande de création de groupe ");
+            System.out.println("demande de création de groupe de Type free ");
             new CreationGroupe(fen_menu_edit);
 
 

@@ -30,10 +30,6 @@ public class MyGroupe implements Groupe {
 
         
 
-        
-
-
-        Utils.open_connection();
 
         try{
 
@@ -71,7 +67,6 @@ public class MyGroupe implements Groupe {
                  
             
             
-            Utils.close_connection();
             
 
 
@@ -107,7 +102,6 @@ public class MyGroupe implements Groupe {
         membre_groupe.add(e);
         size++;
 
-        Utils.open_connection();
 
 
     try{
@@ -123,7 +117,6 @@ public class MyGroupe implements Groupe {
 
             }
 
-        Utils.close_connection();
 
         
 
@@ -138,7 +131,6 @@ public class MyGroupe implements Groupe {
         membre_groupe.remove(e);
         size--;
 
-        Utils.open_connection();
 
         try{
 
@@ -154,14 +146,12 @@ public class MyGroupe implements Groupe {
                 }
 
 
-        Utils.close_connection();
         
         return true;
     }
 
     public boolean addSousGroupe(Groupe g){
 
-        Utils.open_connection();
 
         try{
 
@@ -176,7 +166,6 @@ public class MyGroupe implements Groupe {
     
                 }
 
-        Utils.close_connection();
 
 
 
@@ -186,7 +175,6 @@ public class MyGroupe implements Groupe {
 
     public boolean removeSousGroupe(Groupe g){
 
-        Utils.open_connection();
 
         try{
 
@@ -200,7 +188,6 @@ public class MyGroupe implements Groupe {
     
                 }
 
-        Utils.close_connection();
 
 
 
@@ -255,7 +242,6 @@ public class MyGroupe implements Groupe {
     public Set<Groupe> getSousGroupes(){
 
         if(sous_groupes.isEmpty()){
-        Utils.open_connection();
         
     try{
         
@@ -276,7 +262,6 @@ public class MyGroupe implements Groupe {
             
           }
 
-          Utils.close_connection();
 
         }
 
@@ -294,7 +279,6 @@ public class MyGroupe implements Groupe {
         
     if(membre_groupe.isEmpty()){
         
-        Utils.open_connection();
 
         try{
 
@@ -313,7 +297,6 @@ public class MyGroupe implements Groupe {
             System.err.println("errreur Sql at getEtudiants()"+se);
 
         }
-        Utils.close_connection();
     
     
     }
@@ -339,7 +322,6 @@ public class MyGroupe implements Groupe {
 
     public boolean editName(String new_name){
 
-        Utils.open_connection();
 
         
 
@@ -367,7 +349,6 @@ public class MyGroupe implements Groupe {
     
                 }
 
-        Utils.close_connection();
 
 
         return false;

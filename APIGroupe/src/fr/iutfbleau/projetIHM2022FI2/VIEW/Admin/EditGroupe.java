@@ -12,7 +12,7 @@ public class EditGroupe extends JDialog {
     public EditGroupe( MyGroupe groupe, JFrame owner){
         super(owner,true);
         setResizable(false);
-
+        
         setLocationRelativeTo(owner);
         setBounds(200, 200,400, 150);
      
@@ -30,7 +30,7 @@ public class EditGroupe extends JDialog {
         ajout_eleve.addActionListener(new Observateur_EG(this,groupe));
         JButton ajout_sous_groupe = new JButton("Partitioner");
         
-        header.add(new JLabel(groupe.getName()),BorderLayout.CENTER);
+        header.add(new JLabel(groupe.getName()+" "),BorderLayout.CENTER);
         middle.add(new_name);
         middle.add(rename);
         footer.add(ajout_eleve, BorderLayout.WEST);
