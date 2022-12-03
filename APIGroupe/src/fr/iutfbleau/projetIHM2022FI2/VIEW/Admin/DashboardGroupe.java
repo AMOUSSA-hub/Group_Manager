@@ -25,6 +25,7 @@ public class DashboardGroupe extends JFrame {
     public static JPanel menu_etudiant;  
     public static Map<String,Integer> group_map;
     public static CardLayout gestionnaire;
+    public static CardLayout diapo_info_groupe;
     public static JTree arbre ;
     public static MyAbstractGroupeFactory bd;
     
@@ -46,15 +47,17 @@ public class DashboardGroupe extends JFrame {
         menu_etudiant = new JPanel();
 
         gestionnaire = new CardLayout();
+        diapo_info_groupe = new CardLayout();
+        
         
        
         JButton ajout_etudiant = new JButton("ajouter etudiant");
         modification_groupe = new JButton("modifier");
-        suppression_groupe = new JButton("supprimer");
+        suppression_groupe = new JButton("supprimer le groupe");
         creation_groupe = new JButton("créer un sous-groupe libre");
 
 
-        info_group.setLayout(gestionnaire);
+        info_group.setLayout(diapo_info_groupe);
         pan_tree.setLayout(gestionnaire);
         pan_group.setLayout(new GridLayout(2,1));
         pan_group.setBackground(Color.GRAY);
@@ -72,7 +75,7 @@ public class DashboardGroupe extends JFrame {
       
         arbre =  display_group(new DefaultMutableTreeNode(bd.getPromotion().getName()),1);
           
-       
+        new DefaultTreeCellRenderer().setLeafIcon(new ImageIcon(("res/group.png")));
   
         
         pan_tree.add(arbre);
@@ -150,7 +153,7 @@ public class DashboardGroupe extends JFrame {
             
 
         menu_etudiant.add(diapositive_etudiant,groupe_selected.getId()+"");
-        //info_group.add(new pan_info_groupe(groupe_selected),groupe_selected.getId()+"");
+        info_group.add(new pan_info_groupe(groupe_selected),groupe_selected.getId()+"");
         
       
         
@@ -168,6 +171,7 @@ public class DashboardGroupe extends JFrame {
         String path = Utils.TreeNode_to_String(parent.getPath());
 
         MyGroupe g = bd.brain.get(id_groupe);
+        g.getName();
        
 
       g.setPath(path);
@@ -193,6 +197,7 @@ public class DashboardGroupe extends JFrame {
                
                 parent.add(fils);     
                  display_group(fils,sous_groupe.getId());
+
                 
                 
             }   
@@ -216,7 +221,7 @@ public class DashboardGroupe extends JFrame {
         pan_tree.add(arbre);
         gestionnaire.next(pan_tree);
         gestionnaire.show(menu_etudiant,Observateur_arborescence.group_selected.getId()+"");
-
+        diapo_info_groupe.show(info_group,Observateur_arborescence.group_selected.getId()+"");
         menu_fen.setVisible(true);
        
        

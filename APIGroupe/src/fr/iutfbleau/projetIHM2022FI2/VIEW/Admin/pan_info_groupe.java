@@ -13,9 +13,9 @@ public class pan_info_groupe extends JPanel {
 
         setLayout(new GridLayout(3,1));
 
-        add(new JLabel("Nom du groupe:" +groupe.getName()));
-        add(new JLabel("minimum de membre : " + groupe.getMin()));
-        add(new JLabel("capacité : "+ groupe.getSize()+"/"+groupe.getMax() ));
+        add(new JLabel("Nom du groupe:" +groupe.getName()),BorderLayout.CENTER);
+        add(new JLabel("minimum de membre : " + groupe.getMin()),BorderLayout.CENTER);
+        add(new JLabel("capacité : "+ groupe.getSize()+"/"+groupe.getMax() ),BorderLayout.CENTER);
         
 
     }

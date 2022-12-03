@@ -2,6 +2,7 @@ package fr.iutfbleau.projetIHM2022FI2.VIEW.Admin;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.ObservateurCreation;
+import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.Observateur_arborescence;
 
 import java.awt.*;
 
@@ -16,7 +17,7 @@ public class CreationGroupe extends JDialog {
         setBounds(300, 300,300, 400);
         setLocationRelativeTo(fen);
        
-        setLayout(new GridLayout(7,1));
+        setLayout(new GridLayout(8,1));
         
 
         
@@ -31,7 +32,7 @@ public class CreationGroupe extends JDialog {
          JButton valider = new JButton("créer le groupe");
          valider.addActionListener(new ObservateurCreation(nom_groupe, min_member, max_member));
 
-
+        add(new JLabel("création sous groupe de "+Observateur_arborescence.group_selected.getName()),BorderLayout.CENTER);
         add(new JLabel("Nom du groupe"),BorderLayout.CENTER);
         add(nom_groupe,BorderLayout.CENTER);
         add(new JLabel("Nombre minimum de membre"),BorderLayout.CENTER);

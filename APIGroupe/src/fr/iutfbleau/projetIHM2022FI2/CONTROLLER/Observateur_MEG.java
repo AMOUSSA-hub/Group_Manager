@@ -29,9 +29,18 @@ public class Observateur_MEG implements ActionListener {
 
         }
 
-        if(e.getActionCommand().equals("supprimer")){
+        if(e.getActionCommand().equals("supprimer le groupe")){
 
-            System.out.println("demande de suppresion du groupe : " +Observateur_arborescence.group_selected.getName());
+
+            int reply = JOptionPane.showConfirmDialog(DashboardGroupe.menu_fen, "Voulez vous vraiment supprimer le sous groupe "+Observateur_arborescence.group_selected.getPath(),"supprimer étudiant", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(DashboardGroupe.menu_fen, "Suppresion");
+                DashboardGroupe.bd.deleteGroupe(Observateur_arborescence.group_selected);
+
+                DashboardGroupe.loadPanGroup();
+                }
+
+
             
 
         }

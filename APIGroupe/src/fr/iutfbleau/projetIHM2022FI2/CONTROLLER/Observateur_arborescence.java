@@ -9,7 +9,6 @@ import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 public class Observateur_arborescence implements TreeSelectionListener {
 
     public static MyGroupe  group_selected = null;
-    public static int id_group;
   
     @Override
     public void valueChanged(TreeSelectionEvent e) {
@@ -18,23 +17,33 @@ public class Observateur_arborescence implements TreeSelectionListener {
 
     determined_group(e.getPath().toString());
         System.out.println(group_selected.getName());
+        System.out.println(group_selected.getId());
         if(group_selected != null){
-                DashboardGroupe.modification_groupe.setEnabled(true);
-                DashboardGroupe.suppression_groupe.setEnabled(true);
-                DashboardGroupe.creation_groupe.setEnabled(true);
                 
-                if(e.getPath().getLastPathComponent().toString().equals("Promotion")){
+            if(e.getPath().getLastPathComponent().toString().equals("Promotion")){
 
-                    DashboardGroupe.modification_groupe.setEnabled(false);
-                DashboardGroupe.suppression_groupe.setEnabled(false);
+                DashboardGroupe.modification_groupe.setEnabled(false);
+            
+            }
+             else{   
+                DashboardGroupe.modification_groupe.setEnabled(true);
+                if(group_selected.getSousGroupes().isEmpty()){
+                DashboardGroupe.suppression_groupe.setEnabled(true);
                 }
-
+                else{
+                    DashboardGroupe.suppression_groupe.setEnabled(false);
+                }
+                
+                
+            }
+            DashboardGroupe.creation_groupe.setEnabled(true);
+                
         }
         
        
        System.out.println(group_selected.getSize());
         DashboardGroupe.gestionnaire.show(DashboardGroupe.menu_etudiant,group_selected.getId()+"");
-       // DashboardGroupe.gestionnaire.next(DashboardGroupe.info_group);
+        DashboardGroupe.diapo_info_groupe.show(DashboardGroupe.info_group,group_selected.getId()+"");
         
         
         
