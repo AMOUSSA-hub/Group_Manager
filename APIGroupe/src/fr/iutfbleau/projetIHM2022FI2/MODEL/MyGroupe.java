@@ -141,7 +141,7 @@ public class MyGroupe implements Groupe {
                     req.setInt(2,father.getId());
                     req.setInt(3,min);
                     req.setInt(4,max);
-                    req.setString(5,"libre");
+                    req.setString(5,"partition");
                     req.executeUpdate();
                 
             

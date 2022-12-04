@@ -222,7 +222,7 @@ public class DashboardGroupe extends JFrame {
         gestionnaire.next(pan_tree);
         gestionnaire.show(menu_etudiant,1+"");
         diapo_info_groupe.show(info_group,1+"");
-        menu_fen.setVisible(true);
+        
        
        
         

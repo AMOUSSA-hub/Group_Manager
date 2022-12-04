@@ -1,11 +1,9 @@
 package fr.iutfbleau.projetIHM2022FI2.VIEW.Etudiant;
 
-<<<<<<< HEAD
 
 
 import javax.swing.*;
 
-=======
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.MNP.*;
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
@@ -17,7 +15,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.tree.*;
 import java.sql.*;
->>>>>>> 3495c65a8cebba664e1de22172cf002eac52da56
+
 
 
 public class ViewEtudiant extends JFrame {
@@ -189,7 +187,6 @@ public class ViewEtudiant extends JFrame {
         gestionnaire.next(pan_groupe);
         gestionnaire.show(menu_etudiant,Observateur_arborescence.group_selected.getId()+"");
 
-        menu_fen.setVisible(true);
        
        
         
@@ -199,9 +196,4 @@ public class ViewEtudiant extends JFrame {
 
 
 
-    public static void main(String[] args) {
-        
-        new DashboardGroupe();
-    }
-    
 }
