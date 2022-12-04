@@ -55,7 +55,7 @@ public class Observateur_MEG implements ActionListener {
 
         }
 
-        if(e.getActionCommand().equals("ajouter etudiant")){
+        if(e.getActionCommand().equals("créer un etudiant")){
 
 
 

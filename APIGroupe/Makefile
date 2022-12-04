@@ -159,6 +159,9 @@ ${BUILD}/MODEL/MyAbstractGroupeFactory.class: ${SRC}/MODEL/MyAbstractGroupeFacto
 ## CONTROLLER ##
 
 
+${BUILD}/CONTROLLER/Observateur_creation_partition.class: ${SRC}/CONTROLLER/Observateur_creation_partition.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_creation_partition.java
+
 ${BUILD}/CONTROLLER/ObservateurChoixProfil.class: ${SRC}/CONTROLLER/ObservateurChoixProfil.java 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/ObservateurChoixProfil.java
 
@@ -180,7 +183,8 @@ ${BUILD}/CONTROLLER/Observateur_MEG.class: ${SRC}/CONTROLLER/Observateur_MEG.jav
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_MEG.java
 
 ${BUILD}/CONTROLLER/Observateur_EG.class: ${SRC}/CONTROLLER/Observateur_EG.java \
-		${BUILD}/VIEW/Admin/Ajout_Etudiant.class
+		${BUILD}/VIEW/Admin/Ajout_Etudiant.class \
+		${BUILD}/VIEW/Admin/Creation_Partition.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_EG.java
 
 ${BUILD}/CONTROLLER/Observateur_menu_etudiant.class: ${SRC}/CONTROLLER/Observateur_menu_etudiant.java 
@@ -191,6 +195,9 @@ ${BUILD}/CONTROLLER/Observateur_menu_etudiant.class: ${SRC}/CONTROLLER/Observate
 
 ## VIEW ##
 
+${BUILD}/VIEW/Admin/Creation_Partition.class: ${SRC}/VIEW/Admin/Creation_Partition.java \
+		${BUILD}/CONTROLLER/Observateur_creation_partition.class
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Creation_Partition.java
 
 ${BUILD}/VIEW/Admin/pan_info_groupe.class: ${SRC}/VIEW/Admin/pan_info_groupe.java 
 		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/pan_info_groupe.java	

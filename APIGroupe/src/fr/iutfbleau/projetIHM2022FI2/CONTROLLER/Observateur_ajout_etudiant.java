@@ -43,17 +43,22 @@ public JDialog fen;
          if(e.getSource() == valider){
 
             if(selection.size()!=0){
-                fen.dispose();
-                Iterator<Etudiant> iterator = selection.iterator();
+                if(selection.size()+Observateur_arborescence.group_selected.getSize() <= Observateur_arborescence.group_selected.getMax()  ){
+                            fen.dispose();
+                            Iterator<Etudiant> iterator = selection.iterator();
 
-                while(iterator.hasNext()){    
+                            while(iterator.hasNext()){    
+                            
+                            DashboardGroupe.bd.addToGroupe(Observateur_arborescence.group_selected, iterator.next());
+                        
+                            }
 
-                DashboardGroupe.bd.addToGroupe(Observateur_arborescence.group_selected, iterator.next());
-            
+                            DashboardGroupe.loadPanGroup();
+                            selection.clear();
+                }else{
+                    JOptionPane.showMessageDialog(new JDialog(), "Ce groupe ne peut pas acccueilir autant d'élève.");
+                    
                 }
-
-                DashboardGroupe.loadPanGroup();
-                selection.clear();
             }
         }
 

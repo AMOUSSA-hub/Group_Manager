@@ -51,9 +51,9 @@ public class Observateur_EG implements ActionListener {
                         DashboardGroupe.loadPanGroup();
                         }
                         else{
-                        System.out.println("erreur groupe du même nom");
-                        
-        JOptionPane.showMessageDialog(new JDialog(), "impossible de mettre ce nom: groupe du même nom déjà existant");
+                            System.out.println("erreur groupe du même nom");
+                            
+                            JOptionPane.showMessageDialog(new JDialog(), "impossible de mettre ce nom: groupe du même nom déjà existant");
                         }
 
                     }
@@ -68,6 +68,15 @@ public class Observateur_EG implements ActionListener {
             this.fen_edit.dispose();
 
             new Ajout_Etudiant(DashboardGroupe.menu_fen,this.group_selected);
+
+
+
+        }
+
+        if(e.getActionCommand().equals("Partitioner")){
+
+            this.fen_edit.dispose();
+            new Creation_Partition(DashboardGroupe.menu_fen);
 
 
 

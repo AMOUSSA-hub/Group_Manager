@@ -27,13 +27,14 @@ public class EditGroupe extends JDialog {
         rename.addActionListener(new Observateur_EG(groupe, new_name,this));
         JButton ajout_eleve = new JButton("ajouter  des étudiants");
         ajout_eleve.addActionListener(new Observateur_EG(this,groupe));
-        JButton ajout_sous_groupe = new JButton("Partitioner");
+        JButton ajout_partition = new JButton("Partitioner");
+        ajout_partition.addActionListener(new Observateur_EG(this,groupe));
         
         header.add(new JLabel(groupe.getName()+" "),BorderLayout.CENTER);
         middle.add(new_name);
         middle.add(rename);
         footer.add(ajout_eleve, BorderLayout.WEST);
-        footer.add(ajout_sous_groupe,BorderLayout.EAST);
+        footer.add(ajout_partition,BorderLayout.EAST);
 
 
         add(header, BorderLayout.NORTH);

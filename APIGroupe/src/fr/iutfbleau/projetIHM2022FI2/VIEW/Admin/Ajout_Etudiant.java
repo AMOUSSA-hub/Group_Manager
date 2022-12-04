@@ -33,16 +33,24 @@ public class Ajout_Etudiant extends JDialog {
         while(iterator.hasNext()){
 
             Etudiant a = iterator.next();
+            boolean contain = false;
+            for(Etudiant i : etudiant){
+               
+                if(a.getId() == i.getId()){
+                    contain = true;
 
-            if(!etudiant.contains(a)){
+                    }
+                }
+                if(!contain ){
+                    JButton bout = new JButton(a.getNom()+" "+ a.getPrenom());
+                    bout.addMouseListener(new Observateur_ajout_etudiant(a));
+                    bout.setBackground(new Color(203, 201, 201));
 
-                JButton bout = new JButton(a.getNom()+" "+ a.getPrenom());
-                bout.addMouseListener(new Observateur_ajout_etudiant(a));
-                bout.setBackground(new Color(203, 201, 201));
-
-            central_pan.add(bout);
+                    central_pan.add(bout);
+                }
             
-            }
+            
+            
 
 
         }

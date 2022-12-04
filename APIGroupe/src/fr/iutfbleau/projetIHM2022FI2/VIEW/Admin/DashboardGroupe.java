@@ -51,7 +51,7 @@ public class DashboardGroupe extends JFrame {
         
         
        
-        JButton ajout_etudiant = new JButton("ajouter etudiant");
+        JButton ajout_etudiant = new JButton("créer un etudiant");
         modification_groupe = new JButton("modifier");
         suppression_groupe = new JButton("supprimer le groupe");
         creation_groupe = new JButton("créer un sous-groupe libre");
@@ -220,8 +220,8 @@ public class DashboardGroupe extends JFrame {
         
         pan_tree.add(arbre);
         gestionnaire.next(pan_tree);
-        gestionnaire.show(menu_etudiant,Observateur_arborescence.group_selected.getId()+"");
-        diapo_info_groupe.show(info_group,Observateur_arborescence.group_selected.getId()+"");
+        gestionnaire.show(menu_etudiant,1+"");
+        diapo_info_groupe.show(info_group,1+"");
         menu_fen.setVisible(true);
        
        

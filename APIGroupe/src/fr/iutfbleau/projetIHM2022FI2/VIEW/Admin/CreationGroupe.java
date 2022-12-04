@@ -14,7 +14,7 @@ public class CreationGroupe extends JDialog {
     public CreationGroupe(JFrame fen){
         super(fen,true);
         fen_crea = this;
-        setBounds(300, 300,300, 400);
+        setSize(300, 400);
         setLocationRelativeTo(fen);
        
         setLayout(new GridLayout(8,1));

@@ -63,7 +63,16 @@ public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
         if (!g.getSousGroupes().isEmpty()){
             throw new IllegalStateException("Impossible de détruire un groupe contenant un groupe");
         }
-        g.getPointPoint().removeSousGroupe(g);
+
+        System.out.println("nom du groupe: "+g.getName()+g.getId()+"\n"+"nom de son père: "+g.getPointPoint().getName()+g.getPointPoint().getId());
+
+
+
+        System.out.println(g.getPointPoint().removeSousGroupe((Groupe)g)); 
+        
+        
+
+
         this.brain.remove(Integer.valueOf(g.getId()));
 
        
@@ -118,7 +127,7 @@ public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
             throw new IllegalArgumentException("Le nombre de partitions doit être strictement positif");
         }
         //Création de la racine de la partition.
-        MyGroupe copiePereRacinePartition = brain.get(pere.getId());
+        MyGroupe copiePereRacinePartition = new MyGroupe(pere);
         pere.addSousGroupe(copiePereRacinePartition);
         this.brain.put(Integer.valueOf(copiePereRacinePartition.getId()),copiePereRacinePartition);
         // création des sous-groupes

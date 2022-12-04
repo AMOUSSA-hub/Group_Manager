@@ -16,13 +16,13 @@ public class Observateur_arborescence implements TreeSelectionListener {
         
 
     determined_group(e.getPath().toString());
-        System.out.println(group_selected.getName());
-        System.out.println(group_selected.getId());
+        System.out.println("nom du groupe: "+group_selected.getName()+group_selected.getId()+"\n"+"nom de son père: "+group_selected.getPointPoint().getName()+group_selected.getPointPoint().getId());
         if(group_selected != null){
                 
             if(e.getPath().getLastPathComponent().toString().equals("Promotion")){
 
                 DashboardGroupe.modification_groupe.setEnabled(false);
+                DashboardGroupe.suppression_groupe.setEnabled(false);
             
             }
              else{   
@@ -41,7 +41,7 @@ public class Observateur_arborescence implements TreeSelectionListener {
         }
         
        
-       System.out.println(group_selected.getSize());
+       
         DashboardGroupe.gestionnaire.show(DashboardGroupe.menu_etudiant,group_selected.getId()+"");
         DashboardGroupe.diapo_info_groupe.show(DashboardGroupe.info_group,group_selected.getId()+"");
         
