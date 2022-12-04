@@ -6,7 +6,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
-import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.Observateur_ajout_etudiant;
+import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
 import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 
 public class Ajout_Etudiant extends JDialog {
@@ -36,7 +36,7 @@ public class Ajout_Etudiant extends JDialog {
 
             if(!etudiant.contains(a)){
 
-                JButton bout = new JButton(a.getNom()+ a.getPrenom());
+                JButton bout = new JButton(a.getNom()+" "+ a.getPrenom());
                 bout.addMouseListener(new Observateur_ajout_etudiant(a));
                 bout.setBackground(new Color(203, 201, 201));
 

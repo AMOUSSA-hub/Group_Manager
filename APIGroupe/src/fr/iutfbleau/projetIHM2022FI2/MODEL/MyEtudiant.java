@@ -18,7 +18,7 @@ public class MyEtudiant implements Etudiant {
      */
     public MyEtudiant(int id_etudiant){
 
-        Utils.open_connection();
+        
 
         try{
 
@@ -31,7 +31,7 @@ public class MyEtudiant implements Etudiant {
             prenom = res.getString(2);
             nom = res.getString(3);
 
-            Utils.open_connection();
+            
 
         } catch (SQLException se) {
             System.err.println("errreur Sql at MyEtudiant()"+se);
@@ -55,7 +55,7 @@ public class MyEtudiant implements Etudiant {
         // auto incrément de l'id
         this.nom = nom;
         this.prenom = prenom;
-        Utils.open_connection();
+        
         try{
         PreparedStatement req = Utils.con.prepareStatement("INSERT INTO Etudiant (Etudiant.NomEtudiant, Etudiant.Prenom) VALUES (?,?) ");
         req.setString(1, nom);
@@ -80,7 +80,7 @@ public class MyEtudiant implements Etudiant {
 
         }
 
-        Utils.close_connection();
+        
     }
 
      /**

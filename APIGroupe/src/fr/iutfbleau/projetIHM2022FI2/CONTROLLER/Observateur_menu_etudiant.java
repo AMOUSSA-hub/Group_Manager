@@ -29,7 +29,7 @@ public class Observateur_menu_etudiant implements ActionListener {
        if (((JButton)e.getSource()).getText().equals("Supprimer")){ 
        
 
-                int reply = JOptionPane.showConfirmDialog(DashboardGroupe.menu_fen, "Voulez vous vraiment supprimer "+etudiant_selected.getNom()+" "+etudiant_selected.getPrenom()+" du groupe"+Observateur_arborescence.group_selected.getName(),"supprimer étudiant", JOptionPane.YES_NO_OPTION);
+                int reply = JOptionPane.showConfirmDialog(DashboardGroupe.menu_fen, "Voulez vous vraiment supprimer "+etudiant_selected.getNom()+" "+etudiant_selected.getPrenom()+" du groupe "+Observateur_arborescence.group_selected.getName(),"supprimer étudiant", JOptionPane.YES_NO_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(DashboardGroupe.menu_fen, "Suppresion");
                 DashboardGroupe.bd.dropFromGroupe(Observateur_arborescence.group_selected, etudiant_selected);

@@ -1,6 +1,6 @@
 package fr.iutfbleau.projetIHM2022FI2.VIEW;
+import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
 
-import fr.iutfbleau.projetIHM2022FI2.VIEW.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +14,7 @@ public class ChoixProfil extends JFrame {
 		fenetre.setLocation(700,200);
         	fenetre.setSize(new Dimension(300,300));
 		fenetre.setLayout(new GridLayout(2,1));
-        	fenetre.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        	fenetre.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		JPanel panneau = new JPanel();
 		((FlowLayout) panneau.getLayout()).setAlignment(FlowLayout.CENTER);

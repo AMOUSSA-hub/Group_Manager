@@ -14,7 +14,7 @@ public class MyGroupe implements Groupe {
     private int id;
     private String name;
     private int id_father;
-    private  MyGroupe father;
+    private  Groupe father;
     private int min;
     private int max;
     private TypeGroupe type;
@@ -30,10 +30,6 @@ public class MyGroupe implements Groupe {
 
         
 
-        
-
-
-        Utils.open_connection();
 
         try{
 
@@ -71,7 +67,6 @@ public class MyGroupe implements Groupe {
                  
             
             
-            Utils.close_connection();
             
 
 
@@ -88,12 +83,41 @@ public class MyGroupe implements Groupe {
    }
 
    public MyGroupe(Groupe pere, String name, int min, int max){
+   
     Objects.requireNonNull(name,"On ne peut pas créer un groupe dont le nom est null");
+    this.name=name;
+    this.min=min;
+    this.max=max;
+    this.type=TypeGroupe.FREE;
+    this.father=pere;
+    this.sous_groupes=new LinkedHashSet<Groupe>();
+    this.membre_groupe=new LinkedHashSet<Etudiant>();
 
+    try{
+    PreparedStatement req = Utils.con.prepareStatement("Insert into Groupe (Nom,idPere,Min,Max,Type) Values (?,?,?,?,?)  ");
+            req.setString(1,name);
+            req.setInt(2,father.getId());
+            req.setInt(3,min);
+            req.setInt(4,max);
+            req.setString(5,"libre");
+            req.executeUpdate();
+        
+    req = Utils.con.prepareStatement("Select max(id) From Groupe");
+            req.setString(1,name);
+           ResultSet res = req.executeQuery();
+           while(res.next()){
+           id = res.getInt(1);
+           }
     
+        } catch (SQLException  se) {
+            System.err.println("errreur Sql at MyGroupe()"+se);
+
+        }
 
 
    }
+
+   
 
     
    
@@ -104,10 +128,9 @@ public class MyGroupe implements Groupe {
    
    public boolean addEtudiant(Etudiant e){
 
-        membre_groupe.add(e);
-        size++;
+        
+        
 
-        Utils.open_connection();
 
 
     try{
@@ -123,22 +146,19 @@ public class MyGroupe implements Groupe {
 
             }
 
-        Utils.close_connection();
 
         
 
-
-        return true;
+            size++;
+        return membre_groupe.add(e);
     }
 
     
     
     public boolean removeEtudiant(Etudiant e){
 
-        membre_groupe.remove(e);
-        size--;
+      
 
-        Utils.open_connection();
 
         try{
 
@@ -150,19 +170,20 @@ public class MyGroupe implements Groupe {
     
            } catch (SQLException  se) {
                     System.err.println("errreur Sql at removeEtudiant():"+se);
+                    return false;
     
                 }
 
 
-        Utils.close_connection();
-        
-        return true;
+                size--;
+                return membre_groupe.remove(e);
+                
     }
 
     public boolean addSousGroupe(Groupe g){
 
-        Utils.open_connection();
 
+      
         try{
 
             PreparedStatement req = Utils.con.prepareStatement("UPDATE Groupe SET Groupe.idPere = ? WHERE Groupe.id = ? ");
@@ -173,39 +194,33 @@ public class MyGroupe implements Groupe {
     
            } catch (SQLException  se) {
                     System.err.println("errreur Sql at addSousGroupe():"+se);
-    
+                    return false;
                 }
 
-        Utils.close_connection();
 
 
 
-        return true;
+        return sous_groupes.add(g);
     }
 
 
     public boolean removeSousGroupe(Groupe g){
 
-        Utils.open_connection();
 
         try{
 
-            PreparedStatement req = Utils.con.prepareStatement("UPDATE Groupe SET Groupe.idPere = 1 WHERE Groupe.id = ? ");
-                req.setInt(1, g.getId());
-                req.executeUpdate();
+            PreparedStatement req = Utils.con.prepareStatement("Delete from Groupe where id = ? ");
+            req.setInt(1,g.getId());
+            int check = req.executeUpdate();
     
     
-           } catch (SQLException  se) {
-                    System.err.println("errreur Sql at removeSousGroupe():"+se);
-    
-                }
+        } catch (SQLException  se) {
+            System.err.println("errreur Sql at addEtudiant():"+se);
+            return false;
+        }
 
-        Utils.close_connection();
-
-
-
-
-        return true;
+        System.out.println(sous_groupes.contains(g)); 
+        return  sous_groupes.remove(g);
     };
 
 
@@ -255,7 +270,6 @@ public class MyGroupe implements Groupe {
     public Set<Groupe> getSousGroupes(){
 
         if(sous_groupes.isEmpty()){
-        Utils.open_connection();
         
     try{
         
@@ -276,7 +290,6 @@ public class MyGroupe implements Groupe {
             
           }
 
-          Utils.close_connection();
 
         }
 
@@ -294,7 +307,6 @@ public class MyGroupe implements Groupe {
         
     if(membre_groupe.isEmpty()){
         
-        Utils.open_connection();
 
         try{
 
@@ -313,7 +325,6 @@ public class MyGroupe implements Groupe {
             System.err.println("errreur Sql at getEtudiants()"+se);
 
         }
-        Utils.close_connection();
     
     
     }
@@ -339,7 +350,6 @@ public class MyGroupe implements Groupe {
 
     public boolean editName(String new_name){
 
-        Utils.open_connection();
 
         
 
@@ -367,7 +377,6 @@ public class MyGroupe implements Groupe {
     
                 }
 
-        Utils.close_connection();
 
 
         return false;

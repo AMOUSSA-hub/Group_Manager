@@ -21,11 +21,11 @@ JAR_MNP = test-mnp.jar
 .PHONY : run clean doc
 
 # BUT PAR DEFAUT #
-run : ${BUILD}/VIEW/Admin/DashboardGroupe.class
-	${JAVA} ${JAVA_OPTIONS} fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe
+run : ${BUILD}/VIEW/ChoixProfil.class
+	${JAVA} ${JAVA_OPTIONS} fr.iutfbleau.projetIHM2022FI2.VIEW.ChoixProfil
 
-run_W : ${BUILD}/VIEW/Admin/DashboardGroupe.class
-	${JAVA} ${JAVA_OPTIONS_W} fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe
+run_W : ${BUILD}/VIEW/ChoixProfil.class
+	${JAVA} ${JAVA_OPTIONS_W} fr.iutfbleau.projetIHM2022FI2.VIEW.ChoixProfil
 
 #${JAR_MNP}
 #${EXEC_JAR} ${JAR_MNP}
@@ -158,6 +158,11 @@ ${BUILD}/MODEL/MyAbstractGroupeFactory.class: ${SRC}/MODEL/MyAbstractGroupeFacto
 
 ## CONTROLLER ##
 
+
+${BUILD}/CONTROLLER/ObservateurChoixProfil.class: ${SRC}/CONTROLLER/ObservateurChoixProfil.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/ObservateurChoixProfil.java
+
+
 ${BUILD}/CONTROLLER/Observateur_ajout_etudiant.class: ${SRC}/CONTROLLER/Observateur_ajout_etudiant.java 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_ajout_etudiant.java
 
@@ -187,6 +192,20 @@ ${BUILD}/CONTROLLER/Observateur_menu_etudiant.class: ${SRC}/CONTROLLER/Observate
 ## VIEW ##
 
 
+${BUILD}/VIEW/Admin/pan_info_groupe.class: ${SRC}/VIEW/Admin/pan_info_groupe.java 
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/pan_info_groupe.java	
+
+${BUILD}/VIEW/ChoixProfil.class: ${SRC}/VIEW/ChoixProfil.java \
+			${BUILD}/VIEW/Admin/DashboardGroupe.class \
+			${BUILD}/VIEW/Etudiant/ViewEtudiant.class \
+			${BUILD}/CONTROLLER/ObservateurChoixProfil.class 
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/ChoixProfil.java	
+
+${BUILD}/VIEW/Etudiant/ViewEtudiant.class: ${SRC}/VIEW/Etudiant/ViewEtudiant.java 
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Etudiant/ViewEtudiant.java	
+
+
+
 
 
 ${BUILD}/VIEW/Admin/EditGroupe.class: ${SRC}/VIEW/Admin/EditGroupe.java \
@@ -209,7 +228,8 @@ ${BUILD}/VIEW/Admin/DashboardGroupe.class: ${SRC}/VIEW/Admin/DashboardGroupe.jav
 				${BUILD}/MODEL/MyGroupe.class \
 				${BUILD}/MODEL/MyEtudiant.class \
 				${BUILD}/MODEL/MyAbstractGroupeFactory.class \
-				${BUILD}/CONTROLLER/Observateur_menu_etudiant.class
+				${BUILD}/CONTROLLER/Observateur_menu_etudiant.class \
+				${BUILD}/VIEW/Admin/pan_info_groupe.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/DashboardGroupe.java
 	
 ${BUILD}/VIEW/Admin/Ajout_Etudiant.class: ${SRC}/VIEW/Admin/Ajout_Etudiant.java \

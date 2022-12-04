@@ -3,6 +3,7 @@ package fr.iutfbleau.projetIHM2022FI2.MODEL;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.Utils;
 import java.util.*;
+import javax.swing.*;
 import java.sql.*;
 
 public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
@@ -11,7 +12,7 @@ public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
 
     public MyAbstractGroupeFactory(){
 
-        Utils.open_connection();
+        
 
         try{
 
@@ -22,7 +23,7 @@ public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
                 brain.put(res.getInt(1), new MyGroupe(res.getInt(1)));
             }
         
-        Utils.close_connection();
+        
 
             } catch (SQLException  se) {
                 System.err.println("errreur Sql at MyAbstractGroupeFactory()"+se);
@@ -59,11 +60,15 @@ public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
         if (this.getPromotion().equals(g)){
             throw new IllegalArgumentException("Impossible de détruire le groupe de toute la promotion");
         }
-        if (g.getSize()>0){
+        if (!g.getSousGroupes().isEmpty()){
             throw new IllegalStateException("Impossible de détruire un groupe contenant un groupe");
         }
         g.getPointPoint().removeSousGroupe(g);
         this.brain.remove(Integer.valueOf(g.getId()));
+
+       
+
+        
     };
 
 
@@ -73,15 +78,30 @@ public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
         if (!this.knows(pere)){
             throw new IllegalArgumentException("Interdit d'ajouter un fils à un groupe inconnu");
         }
+        Iterator<Groupe> i = pere.getSousGroupes().iterator();
+        while(i.hasNext()){
+
+            if(i.next().getName().equals(name)){
+                JOptionPane.showMessageDialog(new JDialog(), "Un sous-groupe du même nom existe déjà.");
+                throw new IllegalArgumentException("nom déjà pris.");
+            }
+
+        }
+        
         if (pere.getType().equals(TypeGroupe.PARTITION)){
+            JOptionPane.showMessageDialog(new JDialog(), "Impossible d'ajouter un groupe à une partition.");
             throw new IllegalArgumentException("Impossible d'ajouter un groupe à une parition. Il faut utiliser createPartition pour créer une partition");
+           
         }
         if ( min <= 0 || max < min){
+            JOptionPane.showMessageDialog(new JDialog(), "Il faut que 0 < min <= max");
             throw new IllegalArgumentException("Il faut que 0 < min <= max");
         }
         MyGroupe g = new MyGroupe(pere,name,min,max);
         pere.addSousGroupe(g);
         this.brain.put(Integer.valueOf(g.getId()),g);
+
+
     };
 
    
