@@ -18,6 +18,7 @@ public class ObservateurChoixProfil implements ActionListener {
 		if (clique.getActionCommand().equals("Valider")) {
 			if (fenetre.choix.getSelectedItem().equals("Etudiant")) {
 				fenetre.fenetre.dispose();
+				Utils.open_connection();
 				new ViewEtudiant();
 			} 
 			else if  (fenetre.choix.getSelectedItem().equals("Administrateur")){
