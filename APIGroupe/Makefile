@@ -40,7 +40,7 @@ clean_W :
 
 #POUR LINUX 
 clean : 
-	rm .\build\
+	rm -r build/*
 
 ##clean : 
 
