@@ -16,7 +16,7 @@ public class Observateur_arborescence implements TreeSelectionListener {
         
 
     determined_group(e.getPath().toString());
-        System.out.println("nom du groupe: "+group_selected.getName()+group_selected.getId()+"\n"+"nom de son père: "+group_selected.getPointPoint().getName()+group_selected.getPointPoint().getId());
+
         if(group_selected != null){
                 
             if(e.getPath().getLastPathComponent().toString().equals("Promotion")){

@@ -1,4 +1,4 @@
-package fr.iutfbleau.projetIHM2022FI2.VIEW.Admin;
+package fr.iutfbleau.projetIHM2022FI2.VIEW.Etudiant;
 
 import javax.swing.*;
 import java.awt.*;

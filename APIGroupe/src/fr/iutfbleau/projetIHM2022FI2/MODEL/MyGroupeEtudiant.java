@@ -8,7 +8,6 @@ import fr.iutfbleau.projetIHM2022FI2.VIEW.Etudiant.ViewEtudiant;
 
 import java.util.*;
 
-import javax.management.ConstructorParameters;
 
 import java.sql.*;
 import java.lang.*;
@@ -43,17 +42,16 @@ public class MyGroupeEtudiant implements Groupe {
                     min = res.getInt(4);
                     max = res.getInt(5);
                     
-                    switch(res.getString(6)){
-
-
-                        case "Tous les étudiants":
-                            type = TypeGroupe.ROOT;
-
-                        case "partition":
-                        type = TypeGroupe.PARTITION;
-
-                        case "libre":
-                        type = TypeGroupe.FREE;
+                    if(res.getString(6).equals("Tous les étudiants")){
+                        type = TypeGroupe.ROOT;
+                    }
+                    
+                    if(res.getString(6).equals("partition")){
+                    type = TypeGroupe.PARTITION;
+                    }
+                    
+                    if(res.getString(6).equals("libre")){
+                    type = TypeGroupe.FREE;
                     }
             }
             
@@ -180,7 +178,7 @@ public class MyGroupeEtudiant implements Groupe {
     public Groupe getPointPoint(){
 
         if(father == null){
-        father = new MyGroupe(id_father);
+        father = ViewEtudiant.bd.brain.get(id_father);
         }
         return father;
     };

@@ -217,8 +217,9 @@ public class DashboardGroupe extends JFrame {
 
         group_map.clear();
        
-
+        Observateur_arborescence.group_selected = bd.brain.get(1);
         arbre = display_group(new DefaultMutableTreeNode(bd.getPromotion().getName()),1);
+    
 
         
         pan_tree.add(arbre);

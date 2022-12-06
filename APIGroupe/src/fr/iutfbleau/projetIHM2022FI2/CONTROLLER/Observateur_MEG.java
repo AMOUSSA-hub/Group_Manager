@@ -4,7 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
-
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Etudiant.*;
 public class Observateur_MEG implements ActionListener {
 
     private JFrame fen_menu_edit;
@@ -35,13 +35,7 @@ public class Observateur_MEG implements ActionListener {
 
         if(e.getActionCommand().equals("modifier")){
             new EditGroupe(Observateur_arborescence.group_selected,fen_menu_edit);
-<<<<<<< HEAD
-            System.out.println(Observateur_arborescence.group_selected.getType());
-           
-            
 
-=======
->>>>>>> 418bb6bc621c4ec94a7fd2de3dbea96c4c4f2199
         }
 
         if(e.getActionCommand().equals("créer un etudiant")){

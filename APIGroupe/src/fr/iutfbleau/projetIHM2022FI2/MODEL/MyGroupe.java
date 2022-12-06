@@ -7,7 +7,7 @@ import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 
 import java.util.*;
 
-import javax.management.ConstructorParameters;
+
 
 import java.sql.*;
 
@@ -301,7 +301,7 @@ public class MyGroupe implements Groupe {
     public Groupe getPointPoint(){
 
         if(father == null){
-        father = new MyGroupe(id_father);
+        father =  DashboardGroupe.bd.brain.get(id_father) ;
         }
         return father;
     };
