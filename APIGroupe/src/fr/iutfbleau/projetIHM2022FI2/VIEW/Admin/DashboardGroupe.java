@@ -19,7 +19,7 @@ public class DashboardGroupe extends JFrame {
 
     public static  JFrame menu_fen;
     public static JPanel info_group;
-    public static  JButton modification_groupe ;
+    public static  JButton modification_groupe;
     public static JButton suppression_groupe ;
     public  static JButton creation_groupe ;
     public static JPanel menu_etudiant;  

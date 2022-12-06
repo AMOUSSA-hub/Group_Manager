@@ -17,32 +17,20 @@ public class MyEtudiant implements Etudiant {
      * 
      */
     public MyEtudiant(int id_etudiant){
-
-        
-
         try{
 
         PreparedStatement req = Utils.con.prepareStatement("Select * from Etudiant where Id = ? ");
             req.setInt(1,id_etudiant);
             ResultSet res = req.executeQuery();
             res.next();
-
             id = res.getInt(1);
             prenom = res.getString(2);
             nom = res.getString(3);
-
-            
 
         } catch (SQLException se) {
             System.err.println("errreur Sql at MyEtudiant()"+se);
 
         }
-        
-
-
-
-
-
     }
     /**
      * permet de créer un étudiant et de l'ajouter à la bd 
@@ -61,9 +49,6 @@ public class MyEtudiant implements Etudiant {
         req.setString(1, nom);
         req.setString(2, prenom);
         req.executeUpdate();
-        
-       
-
         req =  Utils.con.prepareStatement("select MAX(Etudiant.id) from Etudiant where NomEtudiant = ? AND Prenom = ? ");
         req.setString(1, nom);
         req.setString(2, prenom);
@@ -71,16 +56,10 @@ public class MyEtudiant implements Etudiant {
         res.next();
         id = res.getInt(1);
         
-        
-
-        
-
    } catch (SQLException  se) {
             System.err.println("errreur Sql at EtudiantNP():"+se);
 
         }
-
-        
     }
 
      /**

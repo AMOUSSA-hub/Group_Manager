@@ -180,7 +180,8 @@ ${BUILD}/CONTROLLER/Observateur_arborescenceEtudiant.class: ${SRC}/CONTROLLER/Ob
 ${BUILD}/CONTROLLER/Observateur_MEG.class: ${SRC}/CONTROLLER/Observateur_MEG.java \
 		${BUILD}/VIEW/Admin/CreationGroupe.class \
 		${BUILD}/VIEW/Admin/EditGroupe.class \
-		${BUILD}/VIEW/Admin/Creation_Etudiant.class 
+		${BUILD}/VIEW/Admin/Creation_Etudiant.class \
+		${BUILD}/VIEW/Etudiant/Changement_Groupe.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_MEG.java
 
 ${BUILD}/CONTROLLER/Observateur_EG.class: ${SRC}/CONTROLLER/Observateur_EG.java \
@@ -220,7 +221,10 @@ ${BUILD}/VIEW/Admin/EditGroupe.class: ${SRC}/VIEW/Admin/EditGroupe.java \
 		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/EditGroupe.java	
 
 ${BUILD}/VIEW/Admin/Creation_Etudiant.class: ${SRC}/VIEW/Admin/Creation_Etudiant.java 
-		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Creation_Etudiant.java	
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Creation_Etudiant.java
+
+${BUILD}/VIEW/Etudiant/Changement_Groupe.class: ${SRC}/VIEW/Etudiant/Changement_Groupe.java 
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Etudiant/Changement_Groupe.java
 
 
 ${BUILD}/VIEW/Admin/CreationGroupe.class: ${SRC}/VIEW/Admin/CreationGroupe.java \
