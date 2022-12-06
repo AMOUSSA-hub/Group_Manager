@@ -52,9 +52,11 @@ public class DashboardGroupe extends JFrame {
         
        
         JButton ajout_etudiant = new JButton("créer un etudiant");
+        JButton demande_changement = new JButton("voir demande");
         modification_groupe = new JButton("modifier");
         suppression_groupe = new JButton("supprimer le groupe");
         creation_groupe = new JButton("créer un sous-groupe libre");
+    
 
 
         info_group.setLayout(diapo_info_groupe);
@@ -99,6 +101,7 @@ public class DashboardGroupe extends JFrame {
         south_pan.add(modification_groupe,BorderLayout.CENTER);
         south_pan.add(suppression_groupe,BorderLayout.CENTER);
         south_pan.add(ajout_etudiant,BorderLayout.CENTER);
+        south_pan.add(demande_changement,BorderLayout.CENTER);
 
         add(north_pan);
         add(south_pan,BorderLayout.SOUTH);

@@ -50,6 +50,7 @@ public class Observateur_MEG implements ActionListener {
 
 
             new EditGroupe(Observateur_arborescence.group_selected,fen_menu_edit);
+            System.out.println(Observateur_arborescence.group_selected.getType());
            
             
 

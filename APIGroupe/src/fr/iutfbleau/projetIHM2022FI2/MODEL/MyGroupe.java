@@ -46,17 +46,16 @@ public class MyGroupe implements Groupe {
                     min = res.getInt(4);
                     max = res.getInt(5);
                     
-                    switch(res.getString(6)){
-
-
-                        case "Tous les étudiants":
-                            type = TypeGroupe.ROOT;
-
-                        case "partition":
-                        type = TypeGroupe.PARTITION;
-
-                        case "libre":
-                        type = TypeGroupe.FREE;
+                    if(res.getString(6).equals("Tous les étudiants")){
+                        type = TypeGroupe.ROOT;
+                    }
+                    
+                    if(res.getString(6).equals("partition")){
+                    type = TypeGroupe.PARTITION;
+                    }
+                    
+                    if(res.getString(6).equals("libre")){
+                    type = TypeGroupe.FREE;
                     }
             }
             
