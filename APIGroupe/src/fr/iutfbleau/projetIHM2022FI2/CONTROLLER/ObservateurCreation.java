@@ -50,7 +50,7 @@ public class ObservateurCreation implements ActionListener {
 
                     
                 DashboardGroupe.bd.createGroupe(Observateur_arborescence.group_selected, name_groupe, min, max);
-                DashboardGroupe.loadPanGroup();                    
+                DashboardGroupe.refresh_pan_group();                    
 
                     System.out.println("nom du groupe :"+form_nom_groupe.getText().replaceAll("\\s", "") +"\n nombre min de membre :" + ((Number)form_min.getValue()).intValue() + "\n nombre max de membre: " +((Number)form_max.getValue()).intValue());
 
@@ -68,7 +68,7 @@ public class ObservateurCreation implements ActionListener {
                     fen.dispose();
                    
                     DashboardGroupe.bd.brain.get(1).addEtudiant( new MyEtudiant(form_nom.getText(),form_prenom.getText()));
-                    DashboardGroupe.loadPanGroup();
+                    DashboardGroupe.refresh_pan_group();
                     }else{
                         System.out.println("champ vide");
                     }
