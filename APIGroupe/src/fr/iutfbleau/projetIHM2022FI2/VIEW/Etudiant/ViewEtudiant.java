@@ -23,7 +23,8 @@ public class ViewEtudiant extends JFrame {
     public static Map<String,Integer> group_map = new HashMap<String,Integer>();
     public static CardLayout gestionnaire = new CardLayout();
     public static JTree arbre ;
-    public static MyAbstractGroupeFactoryEtudiant bd = new MyAbstractGroupeFactoryEtudiant();
+    public static MyAbstractGroupeFactoryEtudiant bd;
+    public static MyAbstractChangementFactoryEtudiant demandes;
     
 
 	public ViewEtudiant(String nom, int id) {
@@ -32,6 +33,9 @@ public class ViewEtudiant extends JFrame {
         JPanel south_pan = new JPanel();
         pan_groupe = new JPanel();
         demande_de_changement = new JButton("Changer de groupe");
+        JButton voir_les_demandes = new JButton("Voir les demandes");
+        bd = new MyAbstractGroupeFactoryEtudiant();
+        demandes = new MyAbstractChangementFactoryEtudiant(bd);
 
         pan_groupe.setLayout(gestionnaire);
 		fenetre.setLocation(50, 50);
@@ -51,9 +55,11 @@ public class ViewEtudiant extends JFrame {
         north_pan.add(new JScrollPane(menu_etudiant));
         
         demande_de_changement.addActionListener(new Observateur_MEG(this, id));
+        voir_les_demandes.addActionListener(new Observateur_MEG(this, id));
 
         south_pan.setBackground(new Color(116, 208, 241));
         south_pan.add(demande_de_changement,BorderLayout.CENTER);
+        south_pan.add(voir_les_demandes,BorderLayout.CENTER);
 
         fenetre.add(north_pan);
         fenetre.add(south_pan,BorderLayout.SOUTH);

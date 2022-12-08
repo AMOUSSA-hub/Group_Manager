@@ -54,7 +54,10 @@ public class Observateur_MEG implements ActionListener {
 
         if(e.getActionCommand().equals("voir les demandes")){
             new Menu_Changement(fen_menu_edit);
+        }
 
+        if(e.getActionCommand().equals("Voir les demandes")){
+            new Menu_ChangementEtudiant(fen_menu_edit);
         }
     }
     

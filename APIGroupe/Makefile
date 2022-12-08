@@ -154,6 +154,10 @@ ${BUILD}/MODEL/MyChangement.class: ${SRC}/MODEL/MyChangement.java \
 				${BUILD}/API/Changement.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MODEL/MyChangement.java
 
+${BUILD}/MODEL/MyChangementEtudiant.class: ${SRC}/MODEL/MyChangementEtudiant.java \
+				${BUILD}/API/Changement.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MODEL/MyChangementEtudiant.java
+
 ${BUILD}/MODEL/MyAbstractGroupeFactory.class: ${SRC}/MODEL/MyAbstractGroupeFactory.java \
 				${BUILD}/API/AbstractGroupeFactory.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MODEL/MyAbstractGroupeFactory.java
@@ -168,8 +172,13 @@ ${BUILD}/MODEL/MyAbstractGroupeFactoryProf.class: ${SRC}/MODEL/MyAbstractGroupeF
 
 ${BUILD}/MODEL/MyAbstractChangementFactory.class: ${SRC}/MODEL/MyAbstractChangementFactory.java \
 				${BUILD}/API/AbstractChangementFactory.class \
-					${BUILD}/MODEL/MyChangement.class
+				${BUILD}/MODEL/MyChangement.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MODEL/MyAbstractChangementFactory.java
+
+${BUILD}/MODEL/MyAbstractChangementFactoryEtudiant.class: ${SRC}/MODEL/MyAbstractChangementFactoryEtudiant.java \
+				${BUILD}/API/AbstractChangementFactory.class \
+				${BUILD}/MODEL/MyChangementEtudiant.class
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/MODEL/MyAbstractChangementFactoryEtudiant.java
 
 ## CONTROLLER ##
 
@@ -202,7 +211,8 @@ ${BUILD}/CONTROLLER/Observateur_MEG.class: ${SRC}/CONTROLLER/Observateur_MEG.jav
 		${BUILD}/VIEW/Admin/EditGroupe.class \
 		${BUILD}/VIEW/Admin/Creation_Etudiant.class \
 		${BUILD}/VIEW/Etudiant/Changement_Groupe.class \
-		${BUILD}/VIEW/Admin/Menu_Changement.class
+		${BUILD}/VIEW/Admin/Menu_Changement.class \
+		${BUILD}/VIEW/Etudiant/Menu_ChangementEtudiant.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_MEG.java
 
 ${BUILD}/CONTROLLER/Observateur_EG.class: ${SRC}/CONTROLLER/Observateur_EG.java \
@@ -230,18 +240,20 @@ ${BUILD}/CONTROLLER/Observateur_deplacement.class: ${SRC}/CONTROLLER/Observateur
 ## VIEW ##
 
 ${BUILD}/VIEW/Admin/Choix_deplacement.class: ${SRC}/VIEW/Admin/Choix_deplacement.java \
-		${BUILD}/CONTROLLER/Observateur_deplacement.class
+			${BUILD}/CONTROLLER/Observateur_deplacement.class
 		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Choix_deplacement.java
 
 
 ${BUILD}/VIEW/Admin/Menu_Changement.class: ${SRC}/VIEW/Admin/Menu_Changement.java \
-		${BUILD}/CONTROLLER/Observateur_demande.class
+			${BUILD}/CONTROLLER/Observateur_demande.class
 		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Menu_Changement.java
+
+${BUILD}/VIEW/Etudiant/Menu_ChangementEtudiant.class: ${SRC}/VIEW/Etudiant/Menu_ChangementEtudiant.java \
+			${BUILD}/CONTROLLER/Observateur_demande.class
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Etudiant/Menu_ChangementEtudiant.java
 
 ${BUILD}/VIEW/Admin/explication_demande.class: ${SRC}/VIEW/Admin/explication_demande.java 
 		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/explication_demande.java
-
-
 
 ${BUILD}/VIEW/Admin/Creation_Partition.class: ${SRC}/VIEW/Admin/Creation_Partition.java \
 		${BUILD}/CONTROLLER/Observateur_creation_partition.class
@@ -260,6 +272,7 @@ ${BUILD}/VIEW/ChoixProfil.class: ${SRC}/VIEW/ChoixProfil.java \
 ${BUILD}/VIEW/Etudiant/ViewEtudiant.class: ${SRC}/VIEW/Etudiant/ViewEtudiant.java \
 				${BUILD}/MODEL/MyGroupeEtudiant.class \
 				${BUILD}/MODEL/MyAbstractGroupeFactoryEtudiant.class \
+				${BUILD}/MODEL/MyAbstractChangementFactoryEtudiant.class \
 				${BUILD}/CONTROLLER/Observateur_arborescenceEtudiant.class
 		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Etudiant/ViewEtudiant.java	
 
