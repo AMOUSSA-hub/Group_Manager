@@ -24,9 +24,10 @@ public class Ajout_Etudiant extends JDialog {
         JButton annuler = new JButton("annuler");
         
         valider.addMouseListener(new Observateur_ajout_etudiant(valider, this));
+        annuler.addMouseListener(new Observateur_ajout_etudiant(annuler, this));
        
-
-        Set<Etudiant> etudiant_group_parent =   Observateur_arborescence.group_selected.getPointPoint().getEtudiants();
+        Groupe group_parent = group.getPointPoint();
+        Set<Etudiant> etudiant_group_parent =   group_parent.getEtudiants();
         Iterator<Etudiant> iterator = etudiant_group_parent.iterator();
         
         Set<Etudiant> etudiant = group.getEtudiants();
@@ -35,12 +36,24 @@ public class Ajout_Etudiant extends JDialog {
 
             Etudiant a = iterator.next();
             boolean contain = false;
+            for(Groupe g : group_parent.getSousGroupes()){
+
+                
+                for(Etudiant e : g.getEtudiants()){
+                    if (e.getId() == a.getId()){
+                        contain = true;
+                    }
+                }
+
+            }
+            
             for(Etudiant i : etudiant){
                
                 if(a.getId() == i.getId()){
                     contain = true;
 
                     }
+
                 }
                 
                 if(!contain ){
