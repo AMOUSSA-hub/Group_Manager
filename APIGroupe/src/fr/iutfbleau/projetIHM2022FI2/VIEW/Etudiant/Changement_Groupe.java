@@ -12,8 +12,8 @@ import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
 public class Changement_Groupe extends JDialog {
 
     public static JDialog fen;
-    public static JComboBox<String> form_groupe_depart = new JComboBox<String>();
-    public static JComboBox<String> form_groupe_arrivee = new JComboBox<String>();
+    public static JComboBox<String> form_groupe_depart = new JComboBox<>();
+    public static JComboBox<String> form_groupe_arrivee = new JComboBox<>();
     public static JTextField explication = new JTextField();
 
     private String Nom;
@@ -28,6 +28,9 @@ public class Changement_Groupe extends JDialog {
         setLayout(new GridLayout(7,1));
 
         try{
+            form_groupe_arrivee.removeAllItems();
+            form_groupe_depart.removeAllItems();
+            explication.setText("");
             PreparedStatement req = Utils.con.prepareStatement("Select Nom from Groupe Order By id Asc");
                 ResultSet res = req.executeQuery();
                 res.next();
