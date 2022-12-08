@@ -199,17 +199,26 @@ ${BUILD}/CONTROLLER/Observateur_EG.class: ${SRC}/CONTROLLER/Observateur_EG.java 
 		${BUILD}/VIEW/Admin/Creation_Partition.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_EG.java
 
-${BUILD}/CONTROLLER/Observateur_menu_etudiant.class: ${SRC}/CONTROLLER/Observateur_menu_etudiant.java 
+${BUILD}/CONTROLLER/Observateur_menu_etudiant.class: ${SRC}/CONTROLLER/Observateur_menu_etudiant.java \
+		${BUILD}/VIEW/Admin/Choix_deplacement.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_menu_etudiant.java
 
 ${BUILD}/CONTROLLER/Observateur_demande.class: ${SRC}/CONTROLLER/Observateur_demande.java \
 		${BUILD}/VIEW/Admin/explication_demande.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_demande.java
 
+${BUILD}/CONTROLLER/Observateur_deplacement.class: ${SRC}/CONTROLLER/Observateur_deplacement.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_deplacement.java
+
 
 
 
 ## VIEW ##
+
+${BUILD}/VIEW/Admin/Choix_deplacement.class: ${SRC}/VIEW/Admin/Choix_deplacement.java \
+		${BUILD}/CONTROLLER/Observateur_deplacement.class
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Choix_deplacement.java
+
 
 ${BUILD}/VIEW/Admin/Menu_Changement.class: ${SRC}/VIEW/Admin/Menu_Changement.java \
 		${BUILD}/CONTROLLER/Observateur_demande.class

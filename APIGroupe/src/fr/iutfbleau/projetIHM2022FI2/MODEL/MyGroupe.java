@@ -31,8 +31,6 @@ public class MyGroupe implements Groupe {
 //permet de charger un groupe déjà présent dans la base de données.
     public MyGroupe(int id_groupe){
 
-        
-
 
         try{
 

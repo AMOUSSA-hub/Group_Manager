@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.Choix_deplacement;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 
 public class Observateur_menu_etudiant implements ActionListener {
@@ -44,7 +45,9 @@ public class Observateur_menu_etudiant implements ActionListener {
 
 
 
-    if (((JButton)e.getSource()).getText().equals("Déplacer")){ 
+    if (e.getActionCommand().equals("Déplacer")){ 
+
+            new Choix_deplacement(DashboardGroupe.menu_fen, etudiant_selected);
 
 
 
