@@ -9,7 +9,10 @@ import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 import java.awt.event.*;
 import java.sql.*;
 
-
+/**
+ * gère l'interaction en L'utilisateur et l'interface dans Menu_Changement
+*/
+ 
 public class ObservateurChoixProfil implements ActionListener {
 
 	
