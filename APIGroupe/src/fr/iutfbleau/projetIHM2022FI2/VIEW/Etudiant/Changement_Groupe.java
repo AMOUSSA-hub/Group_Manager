@@ -12,8 +12,8 @@ import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
 public class Changement_Groupe extends JDialog {
 
     public static JDialog fen;
-    public static JComboBox<String> form_groupe_depart = new JComboBox<>();
-    public static JComboBox<String> form_groupe_arrivee = new JComboBox<>();
+    public static JComboBox<String> form_groupe_depart = new JComboBox<String>();
+    public static JComboBox<String> form_groupe_arrivee = new JComboBox<String>();
     public static JTextField explication = new JTextField();
 
     private String Nom;
