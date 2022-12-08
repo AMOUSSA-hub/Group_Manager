@@ -231,8 +231,8 @@ ${BUILD}/CONTROLLER/Observateur_demande.class: ${SRC}/CONTROLLER/Observateur_dem
 ${BUILD}/CONTROLLER/Observateur_creation_demande.class: ${SRC}/CONTROLLER/Observateur_creation_demande.java
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_creation_demande.java
 
-${BUILD}/CONTROLLER/Observateur_deplacement.class: ${SRC}/CONTROLLER/Observateur_deplacement.java 
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_deplacement.java
+${BUILD}/CONTROLLER/Observateur_ChoixDeplacement.class: ${SRC}/CONTROLLER/Observateur_ChoixDeplacement.java 
+	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_ChoixDeplacement.java
 
 
 
@@ -240,7 +240,7 @@ ${BUILD}/CONTROLLER/Observateur_deplacement.class: ${SRC}/CONTROLLER/Observateur
 ## VIEW ##
 
 ${BUILD}/VIEW/Admin/Choix_deplacement.class: ${SRC}/VIEW/Admin/Choix_deplacement.java \
-			${BUILD}/CONTROLLER/Observateur_deplacement.class
+			${BUILD}/CONTROLLER/Observateur_ChoixDeplacement.class
 		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Choix_deplacement.java
 
 

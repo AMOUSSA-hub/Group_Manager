@@ -11,7 +11,7 @@ import java.sql.*;
 
 public class ObservateurChoixProfil implements ActionListener {
 
-	private MyAbstractGroupeFactory bd;
+	
 	
 	public ObservateurChoixProfil() {
 	}
@@ -50,7 +50,6 @@ public class ObservateurChoixProfil implements ActionListener {
 		if (clique.getActionCommand().equals("Valider")) {
 			if (ChoixProfil.choix.getSelectedItem().equals("Etudiant")) {
 				ChoixProfil.fenetre.dispose();
-				Utils.open_connection();
 				String nom = ChoixProfil.choixEtudiant.getSelectedItem().toString();
 				int id = 0;
 				int id1 = 0;
@@ -79,13 +78,12 @@ public class ObservateurChoixProfil implements ActionListener {
 			} 
 			else if  (ChoixProfil.choix.getSelectedItem().equals("Administrateur")){
 				ChoixProfil.fenetre.dispose();
-				Utils.open_connection();
-				this.bd = new MyAbstractGroupeFactory();
-				new DashboardGroupe(bd);
+				
+				
+				new DashboardGroupe(ChoixProfil.bd);
 			}
 			else if (ChoixProfil.choix.getSelectedItem().equals("Professeur")) {
 				ChoixProfil.fenetre.dispose();
-				Utils.open_connection();
 				new ViewProf();
 			}
 

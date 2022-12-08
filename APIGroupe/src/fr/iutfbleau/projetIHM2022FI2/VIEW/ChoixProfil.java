@@ -3,6 +3,7 @@ package fr.iutfbleau.projetIHM2022FI2.VIEW;
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.*;
 import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
+import fr.iutfbleau.projetIHM2022FI2.API.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,12 +19,15 @@ public class ChoixProfil extends JFrame {
 	public static JPanel panneau = new JPanel();
 	public static JPanel panneau1 = new JPanel();
 	public static JButton retour = new JButton("Retour");
+	public  static MyAbstractGroupeFactory bd;
  
 	public ChoixProfil() {
+		Utils.open_connection();
 		ObservateurChoixProfil listener = new ObservateurChoixProfil();
+		bd = new MyAbstractGroupeFactory();
 		String nom = new String();
 		String prenom = new String();
-		int id = 0;
+		
 		String complet = new String();
 
 		fenetre.setLocation(700,200);
@@ -40,22 +44,21 @@ public class ChoixProfil extends JFrame {
 		choix.addItem("Administrateur");
 		panneau1.add(choix);
 
-		Utils.open_connection();
-		try {
-			PreparedStatement req = Utils.con.prepareStatement("Select * from Etudiant");
-            ResultSet res = req.executeQuery();
+		
 
-            while(res.next()){
-				id = res.getInt(1);
-				prenom = res.getString(2);
-				nom = res.getString(3);
-				complet = nom + " " + prenom;
-				choixEtudiant.addItem(complet);
-            }
-        } catch (SQLException  se) {
-            System.err.println("errreur Sql at ChoixProfil()"+se);
+		Iterator<Etudiant> it = bd.getPromotion().getEtudiants().iterator();
+
+		while(it.hasNext()){
+
+			Etudiant e = it.next();
+
+			choixEtudiant.addItem(e.getNom()+" "+e.getPrenom());
+
 		}
-		Utils.close_connection();
+
+
+		
+	
 
 		choix.addActionListener(listener);
 		valider.addActionListener(listener);

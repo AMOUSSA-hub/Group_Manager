@@ -1,6 +1,7 @@
 package fr.iutfbleau.projetIHM2022FI2.VIEW.Admin;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
+import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.Observateur_ChoixDeplacement;
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.Observateur_arborescence;
 
 import java.awt.BorderLayout;
@@ -28,6 +29,7 @@ public class Choix_deplacement extends JDialog {
             if(!g.equals(Observateur_arborescence.group_selected)){
                 choix_group.addItem(g.getName());
                 
+
                 
 
             }
@@ -36,6 +38,7 @@ public class Choix_deplacement extends JDialog {
 
         
         JButton val = new JButton("valider");
+        val.addActionListener(new Observateur_ChoixDeplacement(choix_group,e,this));
         
         center_pan.add(new JLabel("Déplacer vers:"));
         center_pan.add(choix_group,BorderLayout.CENTER);
