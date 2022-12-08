@@ -10,7 +10,9 @@ import java.util.*;
 
 
 import java.sql.*;
-
+/**
+ * Un groupe
+ */
 
 public class MyGroupe implements Groupe {
 

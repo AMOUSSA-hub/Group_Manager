@@ -5,6 +5,10 @@ import fr.iutfbleau.projetIHM2022FI2.UTILS.*;
 import java.util.*;
 import java.awt.*;
 import java.sql.*;
+
+/**
+ * Usine abstraite gérant l'ensemble des changements pour l'Admin.
+ */
 public class MyAbstractChangementFactory implements AbstractChangementFactory {
   
     

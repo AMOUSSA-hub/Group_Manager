@@ -8,7 +8,9 @@ import java.sql.*;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.Utils;
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
 
-
+/**
+ * fenêtre permettant à un étudiant de faire une demande de changement
+ */
 public class Changement_Groupe extends JDialog {
 
     public static JDialog fen;

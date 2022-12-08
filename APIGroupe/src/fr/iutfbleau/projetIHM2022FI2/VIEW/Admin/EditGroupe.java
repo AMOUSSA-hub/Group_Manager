@@ -7,7 +7,9 @@ import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 
 import java.awt.*;
 
-
+/**
+ * fenêtre permettant de permettant de modifier un Groupe (le renommer, lui ajouter des étudiants,le partitioner)
+ */
 public class EditGroupe extends JDialog {
 
     public EditGroupe( MyGroupe groupe, JFrame owner){

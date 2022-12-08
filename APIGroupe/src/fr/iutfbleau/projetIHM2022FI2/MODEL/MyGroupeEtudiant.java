@@ -12,7 +12,9 @@ import java.util.*;
 import java.sql.*;
 import java.lang.*;
 
-
+/**
+ * Un groupe (Etudiant)
+ */
 public class MyGroupeEtudiant implements Groupe {
 
     private int id;

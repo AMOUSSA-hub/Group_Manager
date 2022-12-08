@@ -10,6 +10,9 @@ import java.time.chrono.JapaneseEra;
 import java.util.*;
 import java.lang.*;
 
+/**
+ * fenêtre affichant toutes les demandes de changement (pour l'étudiant).
+ */
 public class Menu_ChangementEtudiant extends JDialog {
 
     public Menu_ChangementEtudiant (JFrame owner){

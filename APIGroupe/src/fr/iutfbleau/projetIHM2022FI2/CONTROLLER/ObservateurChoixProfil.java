@@ -10,7 +10,7 @@ import java.awt.event.*;
 import java.sql.*;
 
 /**
- * gère l'interaction en L'utilisateur et l'interface dans Menu_Changement
+ * gère l'interaction en L'utilisateur et l'interface dans ObservateurChoixProfil
 */
  
 public class ObservateurChoixProfil implements ActionListener {

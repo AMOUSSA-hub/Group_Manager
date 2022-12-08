@@ -12,7 +12,9 @@ import javax.swing.tree.*;
 
 
 
-
+/**
+ * fenetre d'accueil de l'admin
+ */
 public class DashboardGroupe extends JFrame {
     private static DefaultMutableTreeNode root;
     private static JPanel pan_tree ;
@@ -116,7 +118,11 @@ public class DashboardGroupe extends JFrame {
     }
 
     
-
+/**
+     * génère un panneau contenant les étudiants de chaque groupe.
+     *
+     * 
+     */
     
     public static void display_etudiant (Groupe groupe_selected,String titre_diapo){
 
@@ -169,6 +175,11 @@ public class DashboardGroupe extends JFrame {
 
     
     
+    /**
+     * génère l'arborescence affichant les groupes
+     *
+     * @return JTree arbre
+     */
     
     
     public static JTree  display_group( DefaultMutableTreeNode node,int id_groupe){
@@ -216,7 +227,13 @@ public class DashboardGroupe extends JFrame {
       return arborescence_groupe;
 
     }
-
+     
+/**
+     *
+     *rafraichir le panneau des groupes 
+     * 
+     */
+    
     public static void refresh_pan_group(){
 
         group_map.clear();
@@ -236,6 +253,11 @@ public class DashboardGroupe extends JFrame {
         
     }
 
+    /**
+     *
+     *rafraichir le panneau des groupes et de rester sur l'affichage du groupe sélectionné 
+     * 
+     */
     public static void refresh_pan_etudiant(){
 
 

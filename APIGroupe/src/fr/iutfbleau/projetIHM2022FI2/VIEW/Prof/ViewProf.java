@@ -12,7 +12,9 @@ import javax.swing.*;
 import javax.swing.tree.*;
 import java.sql.*;
 
-
+/**
+ * fenetre d'accueil du Prof
+ */
 public class ViewProf extends JFrame {
 	
     private static DefaultMutableTreeNode root;

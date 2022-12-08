@@ -6,6 +6,9 @@ import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.Observateur_arborescence;
 
 import java.awt.*;
 
+/**
+ * fenêtre permettant de créer un groupe
+ */
 public class CreationGroupe extends JDialog {
 
 

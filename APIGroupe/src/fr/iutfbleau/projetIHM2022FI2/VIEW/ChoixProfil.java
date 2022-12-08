@@ -9,7 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.sql.*;
-
+/**
+ * fenêtre permettant de choisir le profil que l'on veut : Admin, Prof et Etudiant
+ */
 public class ChoixProfil extends JFrame {
 	public static JFrame fenetre = new JFrame("Choix du Profil");
 	public static JButton valider = new JButton("Valider");

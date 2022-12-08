@@ -4,7 +4,9 @@ import fr.iutfbleau.projetIHM2022FI2.API.*;
 import javax.swing.*;
 
 
-
+/**
+ * fenêtre permettant d'afficher les justification d'une demande de changement
+ */
 public class explication_demande extends  JDialog {
 
     public explication_demande(JDialog owner, Changement c){

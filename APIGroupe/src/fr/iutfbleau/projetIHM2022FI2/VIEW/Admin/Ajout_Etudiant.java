@@ -9,6 +9,9 @@ import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
 import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 
+/**
+ * interface graphique qui permet de choisir les étudiants que l'on veut ajouter à un groupe
+ */
 public class Ajout_Etudiant extends JDialog {
 
     public Ajout_Etudiant (JFrame owner, MyGroupe group){

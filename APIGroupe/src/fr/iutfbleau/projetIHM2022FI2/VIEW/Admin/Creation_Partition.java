@@ -7,7 +7,9 @@ import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.Observateur_creation_partition;
 import java.awt.*;
 
 
-
+/**
+ * fenêtre permettant de créer une partition
+ */
 
 public class Creation_Partition extends JDialog {
 

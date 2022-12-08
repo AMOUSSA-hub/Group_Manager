@@ -12,7 +12,9 @@ import javax.swing.*;
 import javax.swing.tree.*;
 import java.sql.*;
 
-
+/**
+ * fenetre d'accueil de l'Etudiant
+ */
 public class ViewEtudiant extends JFrame {
 	
     private static DefaultMutableTreeNode root;

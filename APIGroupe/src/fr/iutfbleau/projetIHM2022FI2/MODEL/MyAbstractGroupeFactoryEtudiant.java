@@ -6,6 +6,10 @@ import java.util.*;
 import javax.swing.*;
 import java.sql.*;
 
+
+/**
+ * Usine abstraite gérant l'ensemble des groupes pour l'Etudiant.
+ */
 public class MyAbstractGroupeFactoryEtudiant implements AbstractGroupeFactory {
 
     public HashMap<Integer,MyGroupeEtudiant> brain = new HashMap<Integer,MyGroupeEtudiant>();

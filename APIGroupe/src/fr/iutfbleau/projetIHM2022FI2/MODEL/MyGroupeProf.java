@@ -13,7 +13,9 @@ import java.util.*;
 import java.sql.*;
 import java.lang.*;
 
-
+/**
+ * Un groupe (Groupe)
+ */
 public class MyGroupeProf implements Groupe {
 
     private int id;

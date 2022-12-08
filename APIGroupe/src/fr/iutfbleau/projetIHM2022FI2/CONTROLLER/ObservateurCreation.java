@@ -7,6 +7,10 @@ import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 
+
+/**
+ * gère l'interaction entre L'utilisateur et l'interface dans la vue Creation_Etudiant et Ajout_Etudiant
+ */
 public class ObservateurCreation implements ActionListener {
 
     private JTextField form_nom_groupe;

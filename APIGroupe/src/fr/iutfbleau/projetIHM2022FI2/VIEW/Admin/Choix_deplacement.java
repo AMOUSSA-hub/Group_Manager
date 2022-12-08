@@ -9,6 +9,9 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 import java.util.*;
 
+/*
+ * interface graphique permettant de choisir dans quel groupe on veut déplacer un élève
+ */
 
 public class Choix_deplacement extends JDialog {
 

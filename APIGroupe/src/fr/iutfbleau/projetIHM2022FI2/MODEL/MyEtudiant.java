@@ -5,6 +5,9 @@ import java.util.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.Utils;
 
+/**
+ * Un étudiant
+ */
 public class MyEtudiant implements Etudiant {
 
     private int id;

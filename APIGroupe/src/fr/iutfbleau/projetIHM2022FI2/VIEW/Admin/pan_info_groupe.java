@@ -5,6 +5,9 @@ import java.awt.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 
+/**
+ * panneau présent dans l'accueil de l'admin, affichant les caractéristiques d'un groupe (nom,capacité).
+ */
 public class pan_info_groupe extends JPanel {
 
 

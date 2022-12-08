@@ -7,7 +7,9 @@ import java.util.*;
 import java.sql.*;
 
 import fr.iutfbleau.projetIHM2022FI2.API.Changement;
-
+/**
+ * Une demande de changement de groupe concerne un étudiant, qui est dans un groupe A et veut aller dans un groupe B (pour un etudiant).
+ */
 public class MyChangementEtudiant implements Changement {
 
     private int id;

@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.chrono.JapaneseEra;
 import java.util.*;
+
+/**
+ * fenêtre affichant toutes les demandes de changement des élèves
+ */
 public class Menu_Changement extends JDialog {
 
     public Menu_Changement(JFrame owner){

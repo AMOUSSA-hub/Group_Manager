@@ -5,7 +5,9 @@ import fr.iutfbleau.projetIHM2022FI2.UTILS.Utils;
 import java.util.*;
 import javax.swing.*;
 import java.sql.*;
-
+/**
+ * Usine abstraite gérant l'ensemble des groupes pour l'admin.
+ */
 public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
 
     public HashMap<Integer,MyGroupe> brain = new HashMap<Integer,MyGroupe>();

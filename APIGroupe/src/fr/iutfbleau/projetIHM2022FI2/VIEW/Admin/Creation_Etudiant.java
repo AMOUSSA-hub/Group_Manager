@@ -6,7 +6,9 @@ import java.awt.*;
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
 
 
-
+/**
+ * fenêtre permettant de créer un étudiant
+ */
 public class Creation_Etudiant extends JDialog {
 
     public  JDialog fen;
