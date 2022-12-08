@@ -77,10 +77,10 @@ public class ObservateurChoixProfil implements ActionListener {
 				new ViewEtudiant(nom, id);
 			} 
 			else if  (ChoixProfil.choix.getSelectedItem().equals("Administrateur")){
-				ChoixProfil.fenetre.dispose();
-				
-				
-				new DashboardGroupe(ChoixProfil.bd);
+				if (ChoixProfil.mdp.getText().toString().equals("root")) {
+					ChoixProfil.fenetre.dispose();
+					new DashboardGroupe(bd);
+				}
 			}
 			else if (ChoixProfil.choix.getSelectedItem().equals("Professeur")) {
 				ChoixProfil.fenetre.dispose();
