@@ -13,14 +13,15 @@ public class Changement_Groupe extends JDialog {
     public  JDialog fen;
     private String Nom;
     
-    public Changement_Groupe(JFrame owner){
+    public Changement_Groupe(JFrame owner, Number id){
         super(owner,true);
         fen = this;
         setSize(500,700);
         setLocationRelativeTo(owner);
         setLayout(new GridLayout(7,1));
 
-        JTextField form_id = new JTextField();
+        JComboBox<Number> form_id = new JComboBox<Number>();
+        form_id.addItem(id);
         JComboBox<String> form_groupe_depart = new JComboBox<String>();
         JComboBox<String> form_groupe_arrivee = new JComboBox<String>();
 

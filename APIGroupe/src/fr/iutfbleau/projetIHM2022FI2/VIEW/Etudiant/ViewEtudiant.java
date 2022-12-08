@@ -18,7 +18,7 @@ public class ViewEtudiant extends JFrame {
     private static DefaultMutableTreeNode root;
     private static JPanel pan_groupe ;
     public static  JButton demande_de_changement;
-    public static JFrame fenetre = new JFrame("Etudiant");
+    public static JFrame fenetre;
     public static JPanel menu_etudiant = new JPanel();  
     public static Map<String,Integer> group_map = new HashMap<String,Integer>();
     public static CardLayout gestionnaire = new CardLayout();
@@ -26,7 +26,8 @@ public class ViewEtudiant extends JFrame {
     public static MyAbstractGroupeFactoryEtudiant bd = new MyAbstractGroupeFactoryEtudiant();
     
 
-	public ViewEtudiant() {
+	public ViewEtudiant(String nom, int id) {
+        fenetre = new JFrame(nom);
         JPanel north_pan = new JPanel();
         JPanel south_pan = new JPanel();
         pan_groupe = new JPanel();
@@ -49,7 +50,7 @@ public class ViewEtudiant extends JFrame {
         north_pan.add(new JScrollPane(pan_groupe));
         north_pan.add(new JScrollPane(menu_etudiant));
         
-        demande_de_changement.addActionListener(new Observateur_MEG(this));
+        demande_de_changement.addActionListener(new Observateur_MEG(this, id));
 
         south_pan.setBackground(new Color(116, 208, 241));
         south_pan.add(demande_de_changement,BorderLayout.CENTER);
