@@ -6,7 +6,8 @@ import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
-
+/**gère les interactions entre L'utilisateur et l'interface dans la Vue Edit_Groupe
+*/ 
 public class Observateur_EG implements ActionListener {
 
     private MyGroupe group_selected;

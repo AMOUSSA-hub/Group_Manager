@@ -9,7 +9,10 @@ import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.Choix_deplacement;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
-
+/**
+ * gère l'interaction entre L'utilisateur et l'interface dans la vue DashboardGroupe : spécialement menu Etudiant
+*/
+ 
 public class Observateur_menu_etudiant implements ActionListener {
 
 

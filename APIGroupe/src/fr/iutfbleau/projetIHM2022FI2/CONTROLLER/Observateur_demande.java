@@ -13,7 +13,7 @@ import javax.swing.*;
 
 import javax.swing.JDialog;
 /**
- * gère l'interaction en L'utilisateur et l'interface dans Menu_Changement
+ * gère l'interaction entre L'utilisateur et l'interface dans la vue Menu_Changement
 */
 public class Observateur_demande implements ActionListener {
 

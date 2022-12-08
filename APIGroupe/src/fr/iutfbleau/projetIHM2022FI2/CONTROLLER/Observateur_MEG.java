@@ -5,6 +5,11 @@ import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Etudiant.*;
+
+/**
+ * gère les interactions entre L'utilisateur et l'interface dans la vue DashboardGroupe
+*/
+ 
 public class Observateur_MEG implements ActionListener {
 
     private JFrame fen_menu_edit;
