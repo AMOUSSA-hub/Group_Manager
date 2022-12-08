@@ -14,7 +14,7 @@ public class Choix_deplacement extends JDialog {
     public Choix_deplacement(JFrame owner,Etudiant e){
 
         super(owner,true);
-        setSize(600,400);
+        setSize(300,100);
         setLocationRelativeTo(owner);
         JPanel center_pan = new JPanel();
 
@@ -27,6 +27,7 @@ public class Choix_deplacement extends JDialog {
 
             if(!g.equals(Observateur_arborescence.group_selected)){
                 choix_group.addItem(g.getName());
+                
 
             }
 
@@ -34,7 +35,10 @@ public class Choix_deplacement extends JDialog {
 
         
         JButton val = new JButton("valider");
-
+        
+        center_pan.add(new JLabel("Déplacer vers:"));
+        center_pan.add(choix_group,BorderLayout.CENTER);
+        add(center_pan);
         add(new JPanel().add(val),BorderLayout.SOUTH);
 
         setVisible(true);

@@ -45,7 +45,7 @@ public class Observateur_menu_etudiant implements ActionListener {
 
 
 
-    if (e.getActionCommand().equals("Déplacer")){ 
+    if (((JButton)e.getSource()).getText().equals("Déplacer")){ 
 
             new Choix_deplacement(DashboardGroupe.menu_fen, etudiant_selected);
 
