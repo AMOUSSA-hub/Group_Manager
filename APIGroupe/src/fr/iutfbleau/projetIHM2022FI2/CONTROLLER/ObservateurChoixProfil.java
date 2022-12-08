@@ -9,6 +9,7 @@ import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 import java.awt.event.*;
 import java.sql.*;
 
+
 public class ObservateurChoixProfil implements ActionListener {
 
 	
@@ -79,7 +80,7 @@ public class ObservateurChoixProfil implements ActionListener {
 			else if  (ChoixProfil.choix.getSelectedItem().equals("Administrateur")){
 				if (ChoixProfil.mdp.getText().toString().equals("root")) {
 					ChoixProfil.fenetre.dispose();
-					new DashboardGroupe(bd);
+					new DashboardGroupe(ChoixProfil.bd);
 				}
 			}
 			else if (ChoixProfil.choix.getSelectedItem().equals("Professeur")) {
