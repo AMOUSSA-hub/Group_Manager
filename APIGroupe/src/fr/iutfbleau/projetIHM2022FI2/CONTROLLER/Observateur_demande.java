@@ -12,7 +12,9 @@ import java.sql.*;
 import javax.swing.*;
 
 import javax.swing.JDialog;
-
+/**
+ * gère l'interaction en L'utilisateur et l'interface dans Menu_Changement
+*/
 public class Observateur_demande implements ActionListener {
 
     private Changement c;

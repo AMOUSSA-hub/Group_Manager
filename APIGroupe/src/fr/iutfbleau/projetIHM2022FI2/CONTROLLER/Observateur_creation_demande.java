@@ -13,6 +13,10 @@ import javax.swing.*;
 
 import javax.swing.JDialog;
 
+/**
+ * met en palce la création d'une demande de changmenent
+ */
+
 public class Observateur_creation_demande implements ActionListener {
 
     private JDialog fen;

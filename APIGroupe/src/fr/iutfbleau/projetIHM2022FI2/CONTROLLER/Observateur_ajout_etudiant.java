@@ -8,6 +8,10 @@ import javax.swing.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 
+/**
+ * permet d'ajouter un étudiant à un groupe hors le groupe Promo
+ */
+
 public class Observateur_ajout_etudiant implements MouseListener {
 
 private static Set<Etudiant> selection;

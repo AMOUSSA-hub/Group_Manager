@@ -12,7 +12,12 @@ import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 import javax.swing.*;
 import java.util.*;
 
+/**
+ * lance le déplacement d'un élève
+ */
 public class Observateur_ChoixDeplacement implements ActionListener {
+
+   
 
     private JComboBox<String> selection_group;
     private Etudiant etu;
@@ -43,7 +48,11 @@ public class Observateur_ChoixDeplacement implements ActionListener {
         }
     }
 
-
+/** permet de déterminer un groupe grâce à son nom
+ * 
+ * @param name Nom du groupe
+ * @return Objet de type  Groupe()
+ */
     public Groupe determine_group(String name){
 
 

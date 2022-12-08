@@ -6,6 +6,10 @@ import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 
+/**
+ * permet le lancement de la création d'une partition
+ */
+
 public class Observateur_creation_partition implements ActionListener {
 
     private JTextField form_nom;
