@@ -28,6 +28,7 @@ public class Choix_deplacement extends JDialog {
             if(!g.equals(Observateur_arborescence.group_selected)){
                 choix_group.addItem(g.getName());
                 
+                
 
             }
 

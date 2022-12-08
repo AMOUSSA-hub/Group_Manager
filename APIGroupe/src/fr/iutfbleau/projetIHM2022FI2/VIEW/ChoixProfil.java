@@ -2,6 +2,7 @@ package fr.iutfbleau.projetIHM2022FI2.VIEW;
 
 import fr.iutfbleau.projetIHM2022FI2.CONTROLLER.*;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.*;
+import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 
 import javax.swing.*;
 import java.awt.*;

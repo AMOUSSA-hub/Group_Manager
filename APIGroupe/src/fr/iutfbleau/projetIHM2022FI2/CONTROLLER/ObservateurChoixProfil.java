@@ -5,10 +5,13 @@ import fr.iutfbleau.projetIHM2022FI2.VIEW.ChoixProfil;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Etudiant.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Prof.*;
+import fr.iutfbleau.projetIHM2022FI2.MODEL.*;
 import java.awt.event.*;
 import java.sql.*;
 
 public class ObservateurChoixProfil implements ActionListener {
+
+	private MyAbstractGroupeFactory bd;
 	
 	public ObservateurChoixProfil() {
 	}
@@ -77,7 +80,8 @@ public class ObservateurChoixProfil implements ActionListener {
 			else if  (ChoixProfil.choix.getSelectedItem().equals("Administrateur")){
 				ChoixProfil.fenetre.dispose();
 				Utils.open_connection();
-				new DashboardGroupe();
+				this.bd = new MyAbstractGroupeFactory();
+				new DashboardGroupe(bd);
 			}
 			else if (ChoixProfil.choix.getSelectedItem().equals("Professeur")) {
 				ChoixProfil.fenetre.dispose();

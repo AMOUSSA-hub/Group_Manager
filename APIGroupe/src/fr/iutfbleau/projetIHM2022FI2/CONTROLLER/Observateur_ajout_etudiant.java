@@ -13,7 +13,7 @@ public class Observateur_ajout_etudiant implements MouseListener {
 private static Set<Etudiant> selection;
 private Etudiant etudiant_clicked;
 private  boolean selected = false;
-public JButton valider;
+public JButton bout;
 public JDialog fen;
 
 
@@ -29,10 +29,13 @@ public JDialog fen;
     public Observateur_ajout_etudiant (JButton val,JDialog fen){
 
         
-        valider = val;
+        bout = val;
         this.fen = fen;
+        
 
     }
+
+    
 
 
 
@@ -42,26 +45,31 @@ public JDialog fen;
 
     public void mouseClicked(MouseEvent e){
 
-         if(e.getSource() == valider){
+        if(bout != null){
+                if(bout.getText().equals("valider")){
 
-            if(selection.size()!=0){
-                if(selection.size()+Observateur_arborescence.group_selected.getSize() <= Observateur_arborescence.group_selected.getMax()  ){
-                            fen.dispose();
-                            Iterator<Etudiant> iterator = selection.iterator();
+                    if(selection.size()!=0){
+                        if(selection.size()+Observateur_arborescence.group_selected.getSize() <= Observateur_arborescence.group_selected.getMax()  ){
+                                    fen.dispose();
+                                    Iterator<Etudiant> iterator = selection.iterator();
 
-                            while(iterator.hasNext()){    
+                                    while(iterator.hasNext()){    
+                                    
+                                    DashboardGroupe.bd.addToGroupe(Observateur_arborescence.group_selected, iterator.next());
+                                
+                                    }
+
+                                    DashboardGroupe.refresh_pan_group();;
+                                    selection.clear();
+                        }else{
+                            JOptionPane.showMessageDialog(new JDialog(), Observateur_arborescence.group_selected.getName() + " ne peut pas acccueilir autant d'élève.");
                             
-                            DashboardGroupe.bd.addToGroupe(Observateur_arborescence.group_selected, iterator.next());
-                        
-                            }
-
-                            DashboardGroupe.refresh_pan_group();;
-                            selection.clear();
-                }else{
-                    JOptionPane.showMessageDialog(new JDialog(), Observateur_arborescence.group_selected.getName() + " ne peut pas acccueilir autant d'élève.");
-                    
+                        }
+                    }
                 }
-            }
+
+                else if(bout.getText().equals("annuler"))
+                this.fen.dispose();
         }
 
          else if (!selected){

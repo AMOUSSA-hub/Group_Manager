@@ -34,10 +34,9 @@ public class DashboardGroupe extends JFrame {
   
  
 
-    public DashboardGroupe(){
-
+    public DashboardGroupe( MyAbstractGroupeFactory simu_bd){
+        bd = simu_bd;
          menu_fen = this;
-         bd = new MyAbstractGroupeFactory();
          demandes = new MyAbstractChangementFactory(bd);
          group_map = new HashMap<String,Integer>();
 
