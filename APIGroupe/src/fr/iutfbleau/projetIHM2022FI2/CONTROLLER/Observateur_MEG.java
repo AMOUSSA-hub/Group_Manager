@@ -29,7 +29,8 @@ public class Observateur_MEG implements ActionListener {
                 if (reply == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(DashboardGroupe.menu_fen, "Suppresion");
                 DashboardGroupe.bd.deleteGroupe(Observateur_arborescence.group_selected);
-                DashboardGroupe.loadPanGroup();
+                DashboardGroupe.refresh_pan_group();
+                
                 }
         }
 
@@ -44,6 +45,12 @@ public class Observateur_MEG implements ActionListener {
 
         if(e.getActionCommand().equals("Changer de groupe")){
             new Changement_Groupe(fen_menu_edit);
+        }
+
+
+        if(e.getActionCommand().equals("voir les demandes")){
+            new Menu_Changement(fen_menu_edit);
+
         }
     }
     

@@ -12,44 +12,30 @@ public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
 
     public MyAbstractGroupeFactory(){
 
-        
-
         try{
-
         PreparedStatement req = Utils.con.prepareStatement("Select id from Groupe ");
             ResultSet res = req.executeQuery();
-
+            
             while(res.next()){
                 brain.put(res.getInt(1), new MyGroupe(res.getInt(1)));
             }
-        
-        
-
             } catch (SQLException  se) {
                 System.err.println("errreur Sql at MyAbstractGroupeFactory()"+se);
 
             }
-
-
-
     }
 
     
-    public Groupe getPromotion(){
-        
+    public Groupe getPromotion(){     
         return brain.get(1);
-
-
     };
 
 
 
     public Boolean knows(Groupe g){
-
-        return this.brain.containsKey(g.getId());
-    
-    
+        return this.brain.containsKey(g.getId()); 
     };
+
 
 
     public void deleteGroupe(Groupe g){
@@ -65,20 +51,10 @@ public class MyAbstractGroupeFactory implements AbstractGroupeFactory {
         }
 
         System.out.println("nom du groupe: "+g.getName()+g.getId()+"\n"+"nom de son père: "+g.getPointPoint().getName()+g.getPointPoint().getId());
-
-
-
-        System.out.println(g.getPointPoint().removeSousGroupe((Groupe)g)); 
-        
-        
-
-
+        g.getPointPoint().removeSousGroupe(g); 
         this.brain.remove(Integer.valueOf(g.getId()));
-
-       
-
-        
     };
+
 
 
     public void createGroupe(Groupe pere, String name, int min, int max){

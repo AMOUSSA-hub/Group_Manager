@@ -48,7 +48,7 @@ public class Observateur_EG implements ActionListener {
                         boolean result = this.group_selected.editName(new_name);
 
                         if(result == true){
-                        DashboardGroupe.loadPanGroup();
+                        DashboardGroupe.refresh_pan_group();
                         }
                         else{
                             System.out.println("erreur groupe du même nom");

@@ -10,16 +10,18 @@ import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 
 public class Observateur_ajout_etudiant implements MouseListener {
 
-private static Set<Etudiant> selection  = new HashSet<Etudiant>();
+private static Set<Etudiant> selection;
 private Etudiant etudiant_clicked;
 private  boolean selected = false;
 public JButton valider;
 public JDialog fen;
 
 
-    public Observateur_ajout_etudiant (Etudiant e){
+    public Observateur_ajout_etudiant (Etudiant e, Set<Etudiant> liste){
 
         etudiant_clicked = e ;
+        selection = liste;
+
 
     }
 
@@ -53,10 +55,10 @@ public JDialog fen;
                         
                             }
 
-                            DashboardGroupe.loadPanGroup();
+                            DashboardGroupe.refresh_pan_group();;
                             selection.clear();
                 }else{
-                    JOptionPane.showMessageDialog(new JDialog(), "Ce groupe ne peut pas acccueilir autant d'élève.");
+                    JOptionPane.showMessageDialog(new JDialog(), Observateur_arborescence.group_selected.getName() + " ne peut pas acccueilir autant d'élève.");
                     
                 }
             }

@@ -16,7 +16,7 @@ import javax.swing.tree.*;
 public class DashboardGroupe extends JFrame {
     private static DefaultMutableTreeNode root;
     private static JPanel pan_tree ;
-
+    private static JPanel diapositive_etudiant;
     public static  JFrame menu_fen;
     public static JPanel info_group;
     public static  JButton modification_groupe;
@@ -28,6 +28,7 @@ public class DashboardGroupe extends JFrame {
     public static CardLayout diapo_info_groupe;
     public static JTree arbre ;
     public static MyAbstractGroupeFactory bd;
+    public static MyAbstractChangementFactory demandes;
     
 
   
@@ -37,6 +38,7 @@ public class DashboardGroupe extends JFrame {
 
          menu_fen = this;
          bd = new MyAbstractGroupeFactory();
+         demandes = new MyAbstractChangementFactory(bd);
          group_map = new HashMap<String,Integer>();
 
         JPanel north_pan = new JPanel();
@@ -52,7 +54,9 @@ public class DashboardGroupe extends JFrame {
         
        
         JButton ajout_etudiant = new JButton("créer un etudiant");
-        JButton demande_changement = new JButton("voir demande");
+        
+        JButton demande_changement = new JButton("voir les demandes");
+        
         modification_groupe = new JButton("modifier");
         suppression_groupe = new JButton("supprimer le groupe");
         creation_groupe = new JButton("créer un sous-groupe libre");
@@ -94,6 +98,7 @@ public class DashboardGroupe extends JFrame {
         modification_groupe.addActionListener(new Observateur_MEG(this));
         suppression_groupe.addActionListener(new Observateur_MEG());
         ajout_etudiant.addActionListener(new Observateur_MEG(this));
+        demande_changement.addActionListener(new Observateur_MEG(menu_fen));
           
        
         south_pan.setBackground(new Color(116, 208, 241));
@@ -116,7 +121,7 @@ public class DashboardGroupe extends JFrame {
     
     public static void display_etudiant (Groupe groupe_selected,String titre_diapo){
 
-         JPanel diapositive_etudiant = new JPanel();
+          diapositive_etudiant = new JPanel();
 
 
         Set<Etudiant> list_etu =  groupe_selected.getEtudiants();
@@ -213,7 +218,7 @@ public class DashboardGroupe extends JFrame {
 
     }
 
-    public static void loadPanGroup(){
+    public static void refresh_pan_group(){
 
         group_map.clear();
        
@@ -230,6 +235,23 @@ public class DashboardGroupe extends JFrame {
        
        
         
+    }
+
+    public static void refresh_pan_etudiant(){
+
+
+        group_map.clear();
+       
+        arbre = display_group(new DefaultMutableTreeNode(bd.getPromotion().getName()),1);
+    
+
+        
+        pan_tree.add(arbre);
+        gestionnaire.next(pan_tree);
+        gestionnaire.show(menu_etudiant,Observateur_arborescence.group_selected.getId()+"");
+        diapo_info_groupe.show(info_group,Observateur_arborescence.group_selected.getId()+"");
+
+
     }
 
     

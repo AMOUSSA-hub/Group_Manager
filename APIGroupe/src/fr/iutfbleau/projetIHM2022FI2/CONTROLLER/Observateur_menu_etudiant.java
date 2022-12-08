@@ -33,8 +33,8 @@ public class Observateur_menu_etudiant implements ActionListener {
                 if (reply == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(DashboardGroupe.menu_fen, "Suppresion");
                 DashboardGroupe.bd.dropFromGroupe(Observateur_arborescence.group_selected, etudiant_selected);
-
-                DashboardGroupe.loadPanGroup();
+                DashboardGroupe.refresh_pan_etudiant();
+               
                 }
             
                 

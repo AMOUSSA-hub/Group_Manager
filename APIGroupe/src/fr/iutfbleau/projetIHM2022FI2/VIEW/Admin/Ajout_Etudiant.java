@@ -18,15 +18,16 @@ public class Ajout_Etudiant extends JDialog {
         setLocationRelativeTo(owner);
         JPanel central_pan = new JPanel();
         JPanel footer_pan = new JPanel();
-
+        Set<Etudiant> selection  = new HashSet<Etudiant>();
+        
         JButton valider = new JButton("valider");
         JButton annuler = new JButton("annuler");
         
         valider.addMouseListener(new Observateur_ajout_etudiant(valider, this));
        
 
-        Set<Etudiant> promo =   DashboardGroupe.bd.getPromotion().getEtudiants();
-        Iterator<Etudiant> iterator = promo.iterator();
+        Set<Etudiant> etudiant_group_parent =   Observateur_arborescence.group_selected.getPointPoint().getEtudiants();
+        Iterator<Etudiant> iterator = etudiant_group_parent.iterator();
         
         Set<Etudiant> etudiant = group.getEtudiants();
         
@@ -41,13 +42,16 @@ public class Ajout_Etudiant extends JDialog {
 
                     }
                 }
+                
                 if(!contain ){
+
                     JButton bout = new JButton(a.getNom()+" "+ a.getPrenom());
-                    bout.addMouseListener(new Observateur_ajout_etudiant(a));
+                    bout.addMouseListener(new Observateur_ajout_etudiant(a,selection));
                     bout.setBackground(new Color(203, 201, 201));
 
                     central_pan.add(bout);
                 }
+
             
             
             

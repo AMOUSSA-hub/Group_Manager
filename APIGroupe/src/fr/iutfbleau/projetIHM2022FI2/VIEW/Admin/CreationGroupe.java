@@ -24,8 +24,8 @@ public class CreationGroupe extends JDialog {
         JTextField nom_groupe =  new JTextField();
         
         
-        JSpinner min_member = new JSpinner(new SpinnerNumberModel(1,1,null,1));
-        JSpinner max_member = new JSpinner(new SpinnerNumberModel(1,1,null,1));
+        JSpinner min_member = new JSpinner(new SpinnerNumberModel(1,1,Observateur_arborescence.group_selected.getMax(),1));
+        JSpinner max_member = new JSpinner(new SpinnerNumberModel(1,1,Observateur_arborescence.group_selected.getMax(),1));
         
         
 

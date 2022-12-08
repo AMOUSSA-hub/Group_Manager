@@ -170,26 +170,29 @@ public class MyGroupe implements Groupe {
         
         
 
+    if(!membre_groupe.contains(e)){
+
+                try{
+
+                    PreparedStatement req = Utils.con.prepareStatement("Insert into Contient (Contient.idGroupe,Contient.IdEtudiant) VALUES(?,?) ");
+                        req.setInt(1,id);
+                        req.setInt(2, e.getId());
+                        req.executeUpdate();
 
 
-    try{
+                } catch (SQLException  se) {
+                            System.err.println("errreur Sql at addEtudiant():"+se);
 
-        PreparedStatement req = Utils.con.prepareStatement("Insert into Contient (Contient.idGroupe,Contient.IdEtudiant) VALUES(?,?) ");
-            req.setInt(1,id);
-            req.setInt(2, e.getId());
-            req.executeUpdate();
-
-
-       } catch (SQLException  se) {
-                System.err.println("errreur Sql at addEtudiant():"+se);
+                        }
+        
+              membre_groupe.add(e);
+              size++;
+              //test ajout étudiant recursivement
+              //return getPointPoint().addEtudiant(e);
 
             }
-
-
-        
-
-            size++;
-        return membre_groupe.add(e);
+            System.out.println("appartient déjà");
+        return false;
     }
 
     
@@ -197,7 +200,7 @@ public class MyGroupe implements Groupe {
     public boolean removeEtudiant(Etudiant e){
 
       
-
+        if(membre_groupe.contains(e)){
 
         try{
 
@@ -215,7 +218,16 @@ public class MyGroupe implements Groupe {
 
 
                 size--;
-                return membre_groupe.remove(e);
+                 membre_groupe.remove(e);
+            //test suppression etudiant récursivement    
+                 /* 
+            for(Groupe g : getSousGroupes()){    
+                g.removeEtudiant(e);
+            }
+            */
+              }
+              System.out.println("n'est pas présent dans ce groupe");
+          return false;
                 
     }
 
