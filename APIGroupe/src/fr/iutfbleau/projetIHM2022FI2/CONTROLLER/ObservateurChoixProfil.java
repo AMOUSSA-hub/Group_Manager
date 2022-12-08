@@ -4,6 +4,7 @@ import fr.iutfbleau.projetIHM2022FI2.UTILS.Utils;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.ChoixProfil;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Etudiant.*;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Prof.*;
 import java.awt.event.*;
 import java.sql.*;
 

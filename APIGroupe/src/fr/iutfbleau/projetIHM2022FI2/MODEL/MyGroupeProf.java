@@ -4,7 +4,8 @@ package fr.iutfbleau.projetIHM2022FI2.MODEL;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.*;
-import fr.iutfbleau.projetIHM2022FI2.VIEW.Prof.ViewProf;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Prof.*;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Etudiant.*;
 
 import java.util.*;
 

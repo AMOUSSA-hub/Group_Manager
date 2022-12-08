@@ -17,7 +17,7 @@ public class MyAbstractGroupeFactoryProf implements AbstractGroupeFactory {
             ResultSet res = req.executeQuery();
 
             while(res.next()){
-                brain.put(res.getInt(1), new MyGroupeEtudiant(res.getInt(1)));
+                brain.put(res.getInt(1), new MyGroupeProf(res.getInt(1)));
             }
         } catch (SQLException  se) {
             System.err.println("errreur Sql at MyAbstractGroupeFactoryProf()"+se);
