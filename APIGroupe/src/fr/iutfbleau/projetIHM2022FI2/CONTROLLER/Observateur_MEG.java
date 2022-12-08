@@ -8,12 +8,18 @@ import fr.iutfbleau.projetIHM2022FI2.VIEW.Etudiant.*;
 public class Observateur_MEG implements ActionListener {
 
     private JFrame fen_menu_edit;
+    private int idEtudiant = 0;
     
     public Observateur_MEG(JFrame fen){
         fen_menu_edit = fen;
     }
 
     public Observateur_MEG(){
+    }
+
+    public Observateur_MEG(JFrame fen, int id){
+        fen_menu_edit = fen;
+        idEtudiant = id;
     }
 
     @Override
@@ -30,7 +36,6 @@ public class Observateur_MEG implements ActionListener {
                 JOptionPane.showMessageDialog(DashboardGroupe.menu_fen, "Suppresion");
                 DashboardGroupe.bd.deleteGroupe(Observateur_arborescence.group_selected);
                 DashboardGroupe.refresh_pan_group();
-                
                 }
         }
 
@@ -44,9 +49,8 @@ public class Observateur_MEG implements ActionListener {
         }
 
         if(e.getActionCommand().equals("Changer de groupe")){
-            new Changement_Groupe(fen_menu_edit);
+            new Changement_Groupe(fen_menu_edit, idEtudiant);
         }
-
 
         if(e.getActionCommand().equals("voir les demandes")){
             new Menu_Changement(fen_menu_edit);
