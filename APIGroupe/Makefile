@@ -226,6 +226,7 @@ ${BUILD}/VIEW/Admin/pan_info_groupe.class: ${SRC}/VIEW/Admin/pan_info_groupe.jav
 ${BUILD}/VIEW/ChoixProfil.class: ${SRC}/VIEW/ChoixProfil.java \
 			${BUILD}/VIEW/Admin/DashboardGroupe.class \
 			${BUILD}/VIEW/Etudiant/ViewEtudiant.class \
+			${BUILD}/VIEW/Prof/ViewProf.class \
 			${BUILD}/CONTROLLER/ObservateurChoixProfil.class 
 		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/ChoixProfil.java	
 
@@ -234,6 +235,12 @@ ${BUILD}/VIEW/Etudiant/ViewEtudiant.class: ${SRC}/VIEW/Etudiant/ViewEtudiant.jav
 				${BUILD}/MODEL/MyAbstractGroupeFactoryEtudiant.class \
 				${BUILD}/CONTROLLER/Observateur_arborescenceEtudiant.class
 		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Etudiant/ViewEtudiant.java	
+
+${BUILD}/VIEW/Prof/ViewProf.class: ${SRC}/VIEW/Prof/ViewProf.java \
+				${BUILD}/MODEL/MyGroupeEtudiant.class \
+				${BUILD}/MODEL/MyAbstractGroupeFactoryEtudiant.class \
+				${BUILD}/CONTROLLER/Observateur_arborescenceEtudiant.class
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Prof/ViewProf.java
 
 ${BUILD}/VIEW/Admin/EditGroupe.class: ${SRC}/VIEW/Admin/EditGroupe.java \
 		${BUILD}/CONTROLLER/Observateur_EG.class

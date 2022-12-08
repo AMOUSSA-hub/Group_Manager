@@ -32,13 +32,6 @@ public class Observateur_arborescence implements TreeSelectionListener {
         }    
         DashboardGroupe.gestionnaire.show(DashboardGroupe.menu_etudiant,group_selected.getId()+"");
         DashboardGroupe.diapo_info_groupe.show(DashboardGroupe.info_group,group_selected.getId()+"");
-        
-        
-        
-
-        
-
-
     }
 
     public int determined_group( String p){

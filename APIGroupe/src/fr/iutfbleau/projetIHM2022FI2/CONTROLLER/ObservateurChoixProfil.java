@@ -33,6 +33,16 @@ public class ObservateurChoixProfil implements ActionListener {
 			ChoixProfil.panneau1.revalidate();
 			ChoixProfil.fenetre.repaint();
 		}
+		else if (ChoixProfil.choix.getSelectedItem().equals("Professeur")) {
+			ChoixProfil.panneau1.remove(ChoixProfil.choix);
+			ChoixProfil.panneau1.remove(ChoixProfil.valider);
+			ChoixProfil.panneau.add(ChoixProfil.retour);
+			ChoixProfil.panneau1.add(ChoixProfil.valider);
+			ChoixProfil.panneau.revalidate();
+			ChoixProfil.panneau1.revalidate();
+			ChoixProfil.fenetre.repaint();
+		}
+
 		if (clique.getActionCommand().equals("Valider")) {
 			if (ChoixProfil.choix.getSelectedItem().equals("Etudiant")) {
 				ChoixProfil.fenetre.dispose();
@@ -68,6 +78,12 @@ public class ObservateurChoixProfil implements ActionListener {
 				Utils.open_connection();
 				new DashboardGroupe();
 			}
+			else if (ChoixProfil.choix.getSelectedItem().equals("Professeur")) {
+				ChoixProfil.fenetre.dispose();
+				Utils.open_connection();
+				new ViewProf();
+			}
+
 		} else if (clique.getActionCommand().equals("Retour")) {
 			ChoixProfil.panneau.remove(ChoixProfil.retour);
 			if (ChoixProfil.choix.getSelectedItem().equals("Etudiant")) {
@@ -80,6 +96,13 @@ public class ObservateurChoixProfil implements ActionListener {
 			}
 			else if (ChoixProfil.choix.getSelectedItem().equals("Administrateur")) {
 				ChoixProfil.panneau1.remove(ChoixProfil.mdp);
+				ChoixProfil.panneau1.remove(ChoixProfil.valider);
+				ChoixProfil.panneau1.add(ChoixProfil.choix);
+				ChoixProfil.panneau.revalidate();
+				ChoixProfil.panneau1.revalidate();
+				ChoixProfil.fenetre.repaint();
+			}
+			else if (ChoixProfil.choix.getSelectedItem().equals("Professeur")) {
 				ChoixProfil.panneau1.remove(ChoixProfil.valider);
 				ChoixProfil.panneau1.add(ChoixProfil.choix);
 				ChoixProfil.panneau.revalidate();
