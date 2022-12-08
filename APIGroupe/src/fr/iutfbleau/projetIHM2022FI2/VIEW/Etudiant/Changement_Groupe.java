@@ -60,7 +60,7 @@ public class Changement_Groupe extends JDialog {
         }
 
         JButton valider  = new JButton("Faire la demande");
-        valider.addActionListener(new Observateur_demande(fen, id));
+        valider.addActionListener(new Observateur_creation_demande(fen, id));
         /*valider.addActionListener(new ObservateurCreation(form_nom, form_prenom, fen));*/
 
         add(new JLabel("Groupe de départ"),BorderLayout.NORTH);
