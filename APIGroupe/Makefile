@@ -202,7 +202,8 @@ ${BUILD}/CONTROLLER/Observateur_EG.class: ${SRC}/CONTROLLER/Observateur_EG.java 
 ${BUILD}/CONTROLLER/Observateur_menu_etudiant.class: ${SRC}/CONTROLLER/Observateur_menu_etudiant.java 
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_menu_etudiant.java
 
-${BUILD}/CONTROLLER/Observateur_demande.class: ${SRC}/CONTROLLER/Observateur_demande.java 
+${BUILD}/CONTROLLER/Observateur_demande.class: ${SRC}/CONTROLLER/Observateur_demande.java \
+		${BUILD}/VIEW/Admin/explication_demande.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/CONTROLLER/Observateur_demande.java
 
 
@@ -212,7 +213,10 @@ ${BUILD}/CONTROLLER/Observateur_demande.class: ${SRC}/CONTROLLER/Observateur_dem
 
 ${BUILD}/VIEW/Admin/Menu_Changement.class: ${SRC}/VIEW/Admin/Menu_Changement.java \
 		${BUILD}/CONTROLLER/Observateur_demande.class
-		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Menu_Changement.java	
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/Menu_Changement.java
+
+${BUILD}/VIEW/Admin/explication_demande.class: ${SRC}/VIEW/Admin/explication_demande.java 
+		${JAVAC} ${JAVAC_OPTIONS} ${SRC}/VIEW/Admin/explication_demande.java
 
 
 

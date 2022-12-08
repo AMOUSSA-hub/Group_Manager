@@ -128,11 +128,30 @@ public class Menu_Changement extends JDialog {
                     gbc.weightx = 0.0;
                     gbc.weighty = 0.0;
 
-                    JButton accept = new JButton("accepter la demande");
+                    JButton accept = new JButton("accepter");
                     accept.addActionListener(new Observateur_demande(c,this));
                     tab.add(accept,gbc);
 
 
+                    gbc.gridx = 5;      // la plage de cellules commence à la première colonne
+                    gbc.gridy = nbr_demande;      // la plage de cellules commence à la deuxième ligne
+                    gbc.gridwidth = 1;  // la plage de cellules englobe deux colonnes
+                    gbc.gridheight = 1; // la plage de cellules englobe une seule ligne
+                    gbc.fill = GridBagConstraints.VERTICAL;
+                    gbc.anchor = GridBagConstraints.CENTER;
+                    gbc.insets = new Insets(5,5,5,5);
+                    gbc.weightx = 0.0;
+                    gbc.weighty = 0.0;
+
+                    JButton deny = new JButton("refuser");
+                    deny.addActionListener(new Observateur_demande(c,this));
+                    tab.add(deny,gbc);
+
+
+
+
+
+                    nbr_demande++;
 
                 }
             }else{

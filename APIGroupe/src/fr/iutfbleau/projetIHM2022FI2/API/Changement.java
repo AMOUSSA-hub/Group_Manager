@@ -32,6 +32,12 @@ public interface Changement extends MonPrint {
      */
     public Etudiant getEtu();
 
+    /**
+     * permet de récupérer la justification de chaque demande
+     * @return l'explication
+     */
+    public String getExplication();
+
     
     /**
      * @see MonPrint

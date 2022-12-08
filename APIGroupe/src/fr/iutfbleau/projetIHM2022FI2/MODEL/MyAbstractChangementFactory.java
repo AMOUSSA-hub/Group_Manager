@@ -72,10 +72,11 @@ public class MyAbstractChangementFactory implements AbstractChangementFactory {
 
             PreparedStatement req = Utils.con.prepareStatement("Delete from Changement where id = ? ");
             req.setInt(1,c.getId());
+            req.executeUpdate();
 
 
         } catch (SQLException  se) {
-            System.err.println("errreur Sql at MyGroupe()"+se);
+            System.err.println("errreur Sql at applyChangement()"+se);
 
     }
 
@@ -88,6 +89,19 @@ public class MyAbstractChangementFactory implements AbstractChangementFactory {
         Objects.requireNonNull(c,"On ne peut pas demander la suppression d'un changement qui est null");
 
         this.brain.remove(Integer.valueOf(c.getId()));
+
+        try{
+
+            PreparedStatement req = Utils.con.prepareStatement("Delete from Changement where id = ? ");
+            req.setInt(1,c.getId());
+            req.executeUpdate();
+
+
+        } catch (SQLException  se) {
+            System.err.println("errreur Sql at deleteChangement()"+se);
+
+    }
+
 
     }
 

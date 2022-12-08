@@ -2,6 +2,8 @@ package fr.iutfbleau.projetIHM2022FI2.CONTROLLER;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.DashboardGroupe;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.Menu_Changement;
+import fr.iutfbleau.projetIHM2022FI2.VIEW.Admin.explication_demande;
 import fr.iutfbleau.projetIHM2022FI2.VIEW.Etudiant.Changement_Groupe;
 import fr.iutfbleau.projetIHM2022FI2.UTILS.*;
 
@@ -31,12 +33,20 @@ public class Observateur_demande implements ActionListener {
     public void actionPerformed(ActionEvent e){
 
         if(e.getActionCommand().equals("voir explication")){
+
+            new explication_demande(fen, c);
         }
 
-        if(e.getActionCommand().equals("accepter la demande")){
+        if(e.getActionCommand().equals("accepter")){
             fen.dispose();
             DashboardGroupe.demandes.applyChangement(c);
             DashboardGroupe.refresh_pan_group();
+        }
+
+        if(e.getActionCommand().equals("refuser")){
+            DashboardGroupe.demandes.deleteChangement(c);
+            fen.dispose();
+            new Menu_Changement(DashboardGroupe.menu_fen);
         }
 
         if(e.getActionCommand().equals("Faire la demande")) {
@@ -44,6 +54,7 @@ public class Observateur_demande implements ActionListener {
             String pereArrivee = Changement_Groupe.form_groupe_arrivee.getSelectedItem().toString();
             Utils.open_connection();
             try {
+
                 PreparedStatement req = Utils.con.prepareStatement("Select Nom from Groupe where id = (Select idPere from Groupe where Nom = ?)");
                 req.setString(1, pereDepart);
                 ResultSet res = req.executeQuery();

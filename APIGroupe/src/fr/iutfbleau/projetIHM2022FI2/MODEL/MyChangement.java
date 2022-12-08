@@ -14,6 +14,7 @@ public class MyChangement implements Changement {
     private Groupe a,b;
     private Etudiant e;
     private int id_etu;
+    private String expli;
 
 
 
@@ -24,7 +25,7 @@ public class MyChangement implements Changement {
 
     this.id = id;
     try{
-    PreparedStatement req = Utils.con.prepareStatement("Select  IdEtudiant,idGroupeDepart,idGroupeArrive  from Changement where id = ? ");
+    PreparedStatement req = Utils.con.prepareStatement("Select  IdEtudiant,idGroupeDepart,idGroupeArrive,Explications  from Changement where id = ? ");
     req.setInt(1,id);
     ResultSet res = req.executeQuery();
     while (res.next()){
@@ -32,6 +33,7 @@ public class MyChangement implements Changement {
         id_etu = res.getInt(1);
         a = DashboardGroupe.bd.brain.get(res.getInt(2));
         b = DashboardGroupe.bd.brain.get(res.getInt(3));
+        expli = res.getString(4);
 
 
 
@@ -106,6 +108,12 @@ public class MyChangement implements Changement {
     }
     return e;
     }
+
+    public String getExplication(){
+
+
+        return expli;
+    };
 
    
     
