@@ -111,7 +111,7 @@ public class MyAbstractChangementFactoryEtudiant implements AbstractChangementFa
         Objects.requireNonNull(B,"Le groupe d'arrivée ne peut pas être null");
         Objects.requireNonNull(e,"L'étudiant ne peut pas être null");
 
-        Changement c = new MyChangement(A,e,B);
+        Changement c = new MyChangementEtudiant(A,e,B);
         this.brain.put(Integer.valueOf(c.getId()),c);   
     }
 

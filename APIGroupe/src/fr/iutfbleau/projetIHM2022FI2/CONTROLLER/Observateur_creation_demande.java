@@ -84,6 +84,7 @@ public class Observateur_creation_demande implements ActionListener {
 
                         fen.dispose();
                         JOptionPane.showMessageDialog(Changement_Groupe.fen, "Demande envoyée");
+                        
                     }
                 }
                 else {

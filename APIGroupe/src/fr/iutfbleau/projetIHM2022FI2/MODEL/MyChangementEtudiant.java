@@ -33,7 +33,7 @@ public class MyChangementEtudiant implements Changement {
                 expli = res.getString(4);
             }
         } catch (SQLException  se) {
-            System.err.println("errreur Sql at MyChangement()"+se);
+            System.err.println("errreur Sql at MyChangementEtudiant()"+se);
 
         }
     }

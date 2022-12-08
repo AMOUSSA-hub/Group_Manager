@@ -59,7 +59,7 @@ public class MyGroupeEtudiant implements Groupe {
                  
 
             } catch (SQLException  se) {
-                System.err.println("errreur Sql at MyGroupe()"+se);
+                System.err.println("errreur Sql at MyGroupeEtudiant()"+se);
 
             }
 
@@ -96,7 +96,7 @@ public class MyGroupeEtudiant implements Groupe {
            }
     
         } catch (SQLException  se) {
-            System.err.println("errreur Sql at MyGroupe()"+se);
+            System.err.println("errreur Sql at MyGroupeEtudiant()"+se);
 
         }
 
@@ -113,7 +113,7 @@ public class MyGroupeEtudiant implements Groupe {
        id = res.getInt(1)+1;
        }
     } catch (SQLException  se) {
-        System.err.println("errreur Sql at MyGroupe()"+se);
+        System.err.println("errreur Sql at MyGroupeEtudiant()"+se);
 
     }
         this.name=pere.getName()+"_PARTITION_"+ this.id;
@@ -136,7 +136,7 @@ public class MyGroupeEtudiant implements Groupe {
                 
             
                 } catch (SQLException  se) {
-                    System.err.println("errreur Sql at MyGroupe()"+se);
+                    System.err.println("errreur Sql at MyGroupeEtudiant()"+se);
         
                 }
 
