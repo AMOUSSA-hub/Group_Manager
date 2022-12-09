@@ -202,7 +202,7 @@ public class MyGroupeProf implements Groupe {
 
             while(res.next()){
 
-                sous_groupes.add(ViewEtudiant.bd.brain.get(res.getInt(1)) );
+                sous_groupes.add(ViewProf.bd.brain.get(res.getInt(1)) );
             }
 
    
